@@ -2,7 +2,7 @@
 
 Add an intro here
 
-### Features
+## Features
 
 Describe what it does
 
