@@ -1,3 +1,4 @@
+# GEARS
 
 Add an intro here
 
@@ -5,14 +6,14 @@ Add an intro here
 
 Describe what it does
 
-### Requirements
+## Requirements
 
 What requirements do we have
 
-### Documentation 
+## Documentation 
 
 How is it documented 
 
-### Support
+## Support
 
 Emails
