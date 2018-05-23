@@ -2,4 +2,3 @@ theme: jekyll-theme-tactile
 title: [This is a test title]
 description: [This is a test description]
 show_downloads: [true]
-logo: [./GEARS_logo.png]
