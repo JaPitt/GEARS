@@ -1,4 +1,5 @@
 theme: jekyll-theme-tactile
 title: [This is a test title]
-description: [This is a test description]
+description: [This is a test description hopefully with the logo <img src="GEARS_logo.svg" alt="GEARS Logo" width="300" height="128"> 
+]
 show_downloads: [true]
