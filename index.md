@@ -1,5 +1,6 @@
 # GEARS 
 ## **Put the full title of GEARS here**
+<img src="GEARS_logo.svg" alt="GEARS Logo" width="300" height="128"> 
 
 ...
 ...
