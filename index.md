@@ -57,7 +57,7 @@ an automated regularised estimation approach. Submitted. </p>
 <p> Regarding the software:<br>
 Pitt, J.A. and J.R. Banga (2018) GEARS - a toolbox for Global parameter Estimation
 with Automated Regularisation via Sampling. <br>
-doi </p>
+doi: 10.5281/zenodo.1420465</p>
 
 ## Documentation
 
