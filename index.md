@@ -59,7 +59,7 @@ Pitt, J.A. and J.R. Banga (2018) Parameter estimation in models of biological os
 an automated regularised estimation approach. Submitted. </p>
 
 <p> Regarding the software:<br>
-Pitt, J.A. and J.R. Banga (2018) GEARS - a toolbox for Global parameter Estimation
+Pitt, J.A. and Banga, J.R. (2018) GEARS - a toolbox for Global parameter Estimation
 with Automated Regularisation via Sampling. <br>
 doi: 10.5281/zenodo.1420465</p>
 
