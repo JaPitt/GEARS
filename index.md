@@ -55,7 +55,7 @@ GEARS (Global parameter Estimation with Automated Regularisation via Sampling) i
 <p>If you use this toolbox and publish the results, please cite it with the following references.</p>
 
 <p> Regarding the methodology: <br>
-Pitt, J.A. and J.R. Banga (2018) Parameter estimation in models of biological oscillators:
+Pitt, J.A. and Banga, J.R. (2018) Parameter estimation in models of biological oscillators:
 an automated regularised estimation approach. Submitted. </p>
 
 <p> Regarding the software:<br>
