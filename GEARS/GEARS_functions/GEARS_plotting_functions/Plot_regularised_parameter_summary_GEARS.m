@@ -95,6 +95,43 @@ Table_handle.BackgroundColor(1, :) = My_green;
 Table_handle.BackgroundColor(2, :) = [1 1 1];
 
 
+%% Add condition number text
+
+    if Results.Settings_used.GEARS_options.Calculate_parameter_confidence
+
+        if sum(strcmp('xbest', fieldnames(Results.Global_parameter_estimation.Regularised_estimation))) ~= 0 % If we have regularised results
+
+        Cond = Results.Global_parameter_estimation.Regularised_estimation.FIM_cond_num;
+
+        else
+
+        Cond = Results.Global_parameter_estimation.Non_regularised_estimation.FIM_cond_num;
+        
+        end
+
+        if Cond > 10^5 % 5 = condition number
+
+        Colour = [1 0 0]; % Red
+
+        Cond_num_message = '. It is highly likely that a lack of identifiability exists here. Metrics calulated using the FIM are probably artefacts.';
+
+        else 
+
+        Colour = [0, 0.8, 0]; % Green  
+
+        Cond_num_message = '. The FIM is not singular.';
+
+        end
+
+    Cond_num_text = annotation('textbox', [0.01, 0.025, 0.8, 0.04], 'String', ['The FIM''s condition number is: ' num2str(Cond) Cond_num_message], 'FitBoxToText', 'off');
+
+    Cond_num_text.LineStyle = 'none';
+
+    Cond_num_text.Color = Colour;
+
+    end
+
+
 %% Save table
 
 savefig(Table_figure, Save_loc);

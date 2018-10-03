@@ -195,7 +195,7 @@ Param_initials = 0;
 
         Data.(char(Exp_names(i))).Param_initials = true;    
 
-        Params_in_intials = sum((jacobian(sym(Data.(char(Exp_names(i))).Initial_conditions) == 0, sym(Fitting_params)))) ~= 0;
+        Params_in_intials = sum(~isAlways(jacobian(sym(Data.(char(Exp_names(i))).Initial_conditions), sym(Fitting_params)) == 0, 'Unknown','false')) ~= 0;
 
             if sum(Params_in_intials | Parameters_in_eqns) ~= length(Parameters_in_eqns)
 
@@ -211,13 +211,15 @@ Param_initials = 0;
                   
         else
 
-            if sum(Parameters_in_eqns) ~= length(Parameters_in_eqns)
- 
-            error('Parameters were found that do not exist in either the model equations or the initial conditions')
-            
-            end
+%             if sum(Parameters_in_eqns) ~= length(Parameters_in_eqns)
+%  
+%             error('Parameters were found that do not exist in either the model equations or the initial conditions')
+%             
+%             end
             
         Data.(char(Exp_names(i))).Param_initials = false;    
+
+        Data.(char(Exp_names(i))).Initial_params_only = false(size(Fitting_params));
             
         end
 

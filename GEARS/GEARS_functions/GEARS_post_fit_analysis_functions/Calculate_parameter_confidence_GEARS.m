@@ -18,7 +18,7 @@
 % File author: Jake Alan Pitt (jp00191.su@gmail.com)
 
 
-function [Parameter_confidence_intervals] = Calculate_parameter_confidence_GEARS(Param_values, Data, Simulate, Int_opts, Is_regularised, alpha, P_ref)
+function [Parameter_confidence_intervals, Cond_FIM] = Calculate_parameter_confidence_GEARS(Param_values, Data, Simulate, Int_opts, Is_regularised, alpha, P_ref)
 % A fucntion that calculates parameter confidence using the FIM.
 % Param_values   - The parameter values at which parameter confidence should be calculated.
 % Data           - The set of data for which the NRMSE will be calculated. Must be in the format created in "Initialise_GEARS_data" (structure)
@@ -122,6 +122,8 @@ red_FIM = FIM(~zero_cols, ~zero_cols);
 red_FIM = 0.5*(red_FIM + red_FIM'); % Regularise the FIM
 
 r_cond_FIM = rcond(red_FIM);
+
+Cond_FIM = 1/r_cond_FIM;
 
     if r_cond_FIM <= 1e-50 || isnan(r_cond_FIM)
 
