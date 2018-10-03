@@ -46,13 +46,13 @@ function [Results, Processed_fitting_data, Processed_validation_data] = Run_GEAR
 
 	if isempty(which('amiwrap.m')) % Look for AMICI.
 
-	error('AMICI needs to be the the Matlab path'); 
+	error('AMICI needs to be in the Matlab path'); 
 
 	end
 
 	if isempty(which('MEIGO.m')) % Look for MEIGO.
 
-	error('MEIGO needs to be the the Matlab path');
+	error('MEIGO needs to be in the Matlab path');
 
 	end
 
@@ -710,13 +710,13 @@ disp('Optimisation complete')
 
         if ~Run_standard_optimisation
             	       
-        Parameter_confidence_intervals_regularised = Calculate_parameter_confidence_GEARS(Results_2nd_run.xbest, Processed_fitting_data, Simulate, Int_opts, 1, alpha, P_ref);
+        [Parameter_confidence_intervals_regularised, Cond_FIM_regularised] = Calculate_parameter_confidence_GEARS(Results_2nd_run.xbest, Processed_fitting_data, Simulate, Int_opts, 1, alpha, P_ref);
     
         CV_regularised = (Parameter_confidence_intervals_regularised'*100/1.96)./Results_2nd_run.xbest;
 
         end
     
-    Parameter_confidence_intervals_non_regularised = Calculate_parameter_confidence_GEARS(Initial_params, Processed_fitting_data, Simulate, Int_opts);
+    [Parameter_confidence_intervals_non_regularised, Cond_FIM_non_regularised] = Calculate_parameter_confidence_GEARS(Initial_params, Processed_fitting_data, Simulate, Int_opts);
     
     CV_non_regularised = (Parameter_confidence_intervals_non_regularised'*100/1.96)./Initial_params;
         
@@ -1031,6 +1031,8 @@ Upper_bounds_active = Results.Global_parameter_estimation.Non_regularised_estima
     Results.Statistics.Coefficents_of_variation.Non_regularised_estimation = reshape(CV_non_regularised, [length(CV_non_regularised), 1]);
     
     Results.Global_parameter_estimation.Non_regularised_estimation.Parameter_summary(:, 4) = cellstr(num2str(reshape(CV_non_regularised, [length(CV_non_regularised), 1])));
+
+    Results.Global_parameter_estimation.Non_regularised_estimation.FIM_cond_num = Cond_FIM_non_regularised;
     
     end
 
@@ -1065,6 +1067,8 @@ Results.Global_parameter_estimation.Non_regularised_estimation.Parameter_summary
         Results_dummy.Statistics.Coefficents_of_variation.Regularised_estimation = reshape(CV_regularised, [length(CV_regularised), 1]);
 
         Results.Global_parameter_estimation.Regularised_estimation.Parameter_summary(:, 4) =  cellstr(num2str((reshape(CV_regularised, [length(CV_regularised), 1]))));
+
+        Results.Global_parameter_estimation.Regularised_estimation.FIM_cond_num = Cond_FIM_regularised;
 
         end
 
@@ -1455,11 +1459,38 @@ Line_spaces(1)
         end
 
     disp('Please note that the confidence here is calculated using the first order approximation via the FIM and may be inaccurate.')
+       
     
     else 
         
     disp('Parameter values will not be show here due to the number of parameters fit')
         
+    end
+
+    if Calculate_parameter_confidence
+
+        if ~Run_standard_optimisation
+
+        Cond = Cond_FIM_regularised;
+            
+        else
+
+        Cond = Cond_FIM_non_regularised;
+
+        end
+
+        if Cond > 10^5
+
+        Cond_num_message = '. It is highly likely that a lack of identifiability exists here. Metrics calulated using the FIM are probably artefacts.';
+
+        else
+
+        Cond_num_message = '. The FIM is not singular.';
+
+        end
+
+    disp(['The FIM''s condition number is: ' num2str(Cond) Cond_num_message])
+
     end
 
     if Run_standard_optimisation
