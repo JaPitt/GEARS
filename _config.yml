@@ -1,4 +1,4 @@
 theme: jekyll-theme-dinky
 title: [GEARS]
-description: [a toolbox for Global parameter Estimation with Automated Regularisation via Sampling <img src="GEARS_logo.svg" alt="GEARS Logo" width="190" height="250">]
+description: [a toolbox for Global parameter Estimation with Automated Regularisation via Sampling <img src="./GEARS/Documentation/GEARS_logo.svg" alt="GEARS Logo" width="190" height="250">]
 show_downloads: [true]
