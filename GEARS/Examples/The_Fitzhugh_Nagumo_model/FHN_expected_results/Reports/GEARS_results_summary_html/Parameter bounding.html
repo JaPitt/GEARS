@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {margin:0;}
+ul.head {list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: black;
+position: -webkit-sticky; /* Safari */
+position: sticky;
+top: 0;
+top: 0;
+width: 100%;
+margin-bottom:2px
+text-decoration: none}
+li.head {	border-right: 1px solid white;
+float: left;
+display: block;
+color: #EBF1DE;
+text-align: center;
+padding: 10px 10px;}
+.active {
+background-color: #4CAF50;}
+li.active {
+border-right: 1px solid white;
+float: left;
+display: block;
+color: black;
+text-align: center;
+padding: 10px 10px;
+background-color: #EBF1DE;}
+li.head a:hover {background-color: #0099ff;
+color = black;}
+li.active a:hover {background-color: #0099ff;
+color = black;}
+li.head a:visited{color:#EBF1DE}
+li.head a:link{color:#EBF1DE}
+li.active a:link{color:black}
+li.active a:visited{color:black;
+background-color: #EBF1DE;}
+h1.head {display: block;
+font-size: 2em;
+margin-top: 0em;
+margin-bottom: 0em;
+margin-left: 0;
+margin-right: 0;
+font-weight: bold;
+vertical-align:middle;
+line-height: 4;
+padding:5px}
+</style>
+</head>
+<body>
+<font size="4">
+<h1 class="head"> <span> Parameter bounding for GEARS run: FHN 16-Nov-2018 15:51:22 </span> </center> <img src="./Figures/GEARS_logo.svg" alt="GEARS_logo" height="150" width="175" align="right"></h1> 
+<font size="4">
+<ul class="head">
+<li class="head"><A style="text-decoration: none" href="Regularised solution.html">Regularised solution</A></li>
+<li class="head"><A style="text-decoration: none" href="Statistics for the regularised solution.html">Statistics for the regularised solution</A></li>
+<li class="head"><A style="text-decoration: none" href="Non-regularised solution.html">Non-regularised solution</A></li>
+<li class="head"><A style="text-decoration: none" href="Statistics for the non-regularised solution.html">Statistics for the non-regularised solution</A></li>
+<li class="active"><A style="text-decoration: none" href="Parameter bounding.html">Parameter bounding</A></li>
+<li class="head"><A style="text-decoration: none" href="Sampling.html">Sampling</A></li>
+<li class="head"><A style="text-decoration: none" href="Warning log.html">Warning log</A></li>
+<li class="head"><A style="text-decoration: none" href="Settings used.html">Settings used</A></li>
+</ul>
+</font>
+<p></p>
+<style>
+table.GEARS_table{border: 2px solid black; border-collapse: collapse; margin-left:10px; padding: 3px; width: 99%}
+th.GEARS_table{border: 2px solid black; text-align: left;  background-color: #84A246; color: black;}
+td.GEARS_table{border: 1px solid black; text-align: left}
+tr.GEARS_table:nth-child(even) {background-color: #EBF1DE;}
+tr.GEARS_table:hover {background-color: #000000; color: white}
+</style>
+<table class="GEARS_table">
+<caption>The original parameter bounds.</caption>
+<tr class="GEARS_table">
+<th class="GEARS_table"></th>
+<th class="GEARS_table">Lower</th>
+<th class="GEARS_table">Upper</th>
+</tr>
+<tr class="GEARS_table">
+<th class="GEARS_table">a</th>
+<td class="GEARS_table">1.000000e-05</td>
+<td class="GEARS_table">1.000000e+05</td>
+<tr class="GEARS_table">
+<th class="GEARS_table">b</th>
+<td class="GEARS_table">1.000000e-05</td>
+<td class="GEARS_table">1.000000e+05</td>
+<tr class="GEARS_table">
+<th class="GEARS_table">g</th>
+<td class="GEARS_table">1.000000e-05</td>
+<td class="GEARS_table">1.000000e+05</td>
+</tr>
+</table>
+<p></p>
+<style>
+table.GEARS_table{border: 2px solid black; border-collapse: collapse; margin-left:10px; padding: 3px; width: 99%}
+th.GEARS_table{border: 2px solid black; text-align: left;  background-color: #84A246; color: black;}
+td.GEARS_table{border: 1px solid black; text-align: left}
+tr.GEARS_table:nth-child(even) {background-color: #EBF1DE;}
+tr.GEARS_table:hover {background-color: #000000; color: white}
+</style>
+<table class="GEARS_table">
+<caption>The reduced parameter bounds.</caption>
+<tr class="GEARS_table">
+<th class="GEARS_table"></th>
+<th class="GEARS_table">Lower</th>
+<th class="GEARS_table">Upper</th>
+</tr>
+<tr class="GEARS_table">
+<th class="GEARS_table">a</th>
+<td class="GEARS_table">1.000000e-05</td>
+<td class="GEARS_table">1.000000e+00</td>
+<tr class="GEARS_table">
+<th class="GEARS_table">b</th>
+<td class="GEARS_table">1.000000e-05</td>
+<td class="GEARS_table">5.000000e+02</td>
+<tr class="GEARS_table">
+<th class="GEARS_table">g</th>
+<td class="GEARS_table">1.000000e-05</td>
+<td class="GEARS_table">5.000000e+02</td>
+</tr>
+</table>
+<p></p>
+<p> <center>Plot showing the reduced parameter bounds alongside the estimated solution.<br> <img src="./Figures/Bounds_param_confidence_plot.svg" height="500" width="750">  </br> </center> </pr>
+</html>
+</font>
+</body>

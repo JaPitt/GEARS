@@ -13,8 +13,26 @@ Building with 'Microsoft Visual C++ 2010 (C)'.
 MEX completed successfully.
 
 Processing data ...
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Initialise_GEARS_data', 'D:\Software\MATLAB\GEARS\GEARS_functions\Initialise_GEARS_data.m', 73)" style="font-weight:bold">Initialise_GEARS_data</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\GEARS_functions\Initialise_GEARS_data.m',73,0)">line 73</a>)
+Not all the observables were recongnised in the variable names. If you wish to use a function that is not solely a variable please use the {'Custom function'} option
 
-The expected time of completion of the GEARS computations is 25 seconds
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Run_GEARS', 'D:\Software\MATLAB\GEARS\Run_GEARS.m', 391)" style="font-weight:bold">Run_GEARS</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Run_GEARS.m',391,0)">line 391</a>)
+[Processed_fitting_data, Param_initials_f] = Initialise_GEARS_data(Fitting_data, Var_names, Fitting_params, Parameters_in_eqns, Fixed_params); % Formats the Fitting data.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('FHN_example', 'D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m', 90)" style="font-weight:bold">FHN_example</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m',90,0)">line 90</a>)
+[Results, Processed_fitting_data, Processed_validation_data] = Run_GEARS(Results_folder, Model_information, Fitting_data, Validation_data, 'FHN_example_options'); % Run GEARS
+} 
+clear all
+clc
+FHN_example
+
+%%%%% GEARS initiated %%%%%
+© 2018 Jake Alan Pitt and Julio R. Banga (IIM-CSIC)
+
+
+Processing data ...
+
+The expected time of completion of the GEARS computations is 53 seconds
 
 Performing optimisation ...
 
@@ -26,10 +44,10 @@ Performing optimisation ...
 Refset size automatically calculated: 6
 Number of diverse solutions automatically calculated: 30
 Initial Point (x_0): FEASIBLE SOLUTION. Objective function value: 833.871 
-Initial Pop: NFunEvals: 38  Bestf: 50.9795      CPUTime: 0.546003    Var: 5.48434e+08 
-Iteration: 1 NFunEvals: 78  Bestf: 10.6518      CPUTime: 0.733205    Var: 24830.4 
+Initial Pop: NFunEvals: 38  Bestf: 31.3821      CPUTime: 0.421203    Var: 586501 
+Iteration: 1 NFunEvals: 72  Bestf: 12.0466      CPUTime: 0.561604    Var: 45784.7 
 Call local solver: NL2SOL 
-Initial point function value: 10.651764 
+Initial point function value: 12.046574 
 
 ------------------------------------------------------------------
  This is DN2GB (NL2SOL v2.3)
@@ -45,90 +63,24 @@ Initial point function value: 10.651764
  *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
 ------------------------------------------------------------------
 
-NL2SOL ended after 6 iteration and 10 function evaluation:
+NL2SOL ended after 11 iteration and 16 function evaluation:
        Results: Singular convergence
 Local solution function value: 3.87809 
-Number of function evaluations in the local search: 12 
-CPU Time of the local search: 0.183525  seconds 
+Number of function evaluations in the local search: 18 
+CPU Time of the local search: 0.241529  seconds 
 
-Iteration: 2 NFunEvals: 135  Bestf: 3.87809      CPUTime: 1.154407    Var: 40640.5 
-Iteration: 3 NFunEvals: 182  Bestf: 3.87809      CPUTime: 1.279208    Var: 42624.5 
-Iteration: 4 NFunEvals: 225  Bestf: 3.87809      CPUTime: 1.419609    Var: 33965.2 
-Iteration: 5 NFunEvals: 258  Bestf: 3.87809      CPUTime: 1.513210    Var: 37300.3 
-Iteration: 6 NFunEvals: 305  Bestf: 3.87809      CPUTime: 1.638010    Var: 37791.6 
-Iteration: 7 NFunEvals: 357  Bestf: 3.87809      CPUTime: 1.778411    Var: 22946.7 
-Iteration: 8 NFunEvals: 391  Bestf: 3.87809      CPUTime: 1.918812    Var: 23623.5 
-Iteration: 9 NFunEvals: 430  Bestf: 3.87809      CPUTime: 2.028013    Var: 23732.4 
-Iteration: 10 NFunEvals: 470  Bestf: 3.87809      CPUTime: 2.168414    Var: 23740.8 
-Iteration: 11 NFunEvals: 506  Bestf: 3.87809      CPUTime: 2.308815    Var: 56858.6 
+Iteration: 2 NFunEvals: 124  Bestf: 3.87809      CPUTime: 0.967206    Var: 48490.7 
+Iteration: 3 NFunEvals: 169  Bestf: 3.51573      CPUTime: 1.123207    Var: 39718.5 
+Iteration: 4 NFunEvals: 205  Bestf: 3.51573      CPUTime: 1.248008    Var: 35909.6 
+Iteration: 5 NFunEvals: 238  Bestf: 3.51573      CPUTime: 1.357209    Var: 23254.6 
+Iteration: 6 NFunEvals: 271  Bestf: 3.51573      CPUTime: 1.466409    Var: 23356.4 
+Iteration: 7 NFunEvals: 307  Bestf: 3.51573      CPUTime: 1.606810    Var: 0.457678 
+Iteration: 8 NFunEvals: 348  Bestf: 3.38986      CPUTime: 1.731611    Var: 0.150339 
+Iteration: 9 NFunEvals: 382  Bestf: 3.38986      CPUTime: 1.840812    Var: 0.0972089 
+Iteration: 10 NFunEvals: 416  Bestf: 3.38986      CPUTime: 1.934412    Var: 0.0530397 
+Iteration: 11 NFunEvals: 449  Bestf: 1.00352      CPUTime: 2.059213    Var: 1.33701 
 Call local solver: NL2SOL 
-Initial point function value: 626.868938 
-
-------------------------------------------------------------------
- This is DN2GB (NL2SOL v2.3)
- Authors: John Dennis, David Gay, Roy Welsch
- MEX Interface J. Currie 2012
-
- Problem Properties:
- # Decision Variables:        3
- # Data Points:               6
-------------------------------------------------------------------
-
- *** SUCCESSFUL TERMINATION ***
- *** relative function convergence ***
-------------------------------------------------------------------
-
-NL2SOL ended after 7 iteration and 14 function evaluation:
-       Results: Optimal
-Local solution function value: 379.539 
-Number of function evaluations in the local search: 16 
-CPU Time of the local search: 0.069299  seconds 
-
-Iteration: 12 NFunEvals: 563  Bestf: 3.87809      CPUTime: 2.574016    Var: 23503.4 
-Iteration: 13 NFunEvals: 607  Bestf: 3.87809      CPUTime: 2.730017    Var: 23503.8 
-Iteration: 14 NFunEvals: 643  Bestf: 2.94135      CPUTime: 2.854818    Var: 19987.5 
-Iteration: 15 NFunEvals: 681  Bestf: 2.94135      CPUTime: 3.010819    Var: 964.951 
-Iteration: 16 NFunEvals: 718  Bestf: 2.79009      CPUTime: 3.151220    Var: 1485.94 
-Iteration: 17 NFunEvals: 754  Bestf: 2.79009      CPUTime: 3.276021    Var: 3.95372 
-Iteration: 18 NFunEvals: 789  Bestf: 2.79009      CPUTime: 3.400822    Var: 1.03774 
-Iteration: 19 NFunEvals: 825  Bestf: 2.16054      CPUTime: 3.541223    Var: 66.9375 
-Iteration: 20 NFunEvals: 859  Bestf: 2.16054      CPUTime: 3.681624    Var: 2.62172 
-Iteration: 21 NFunEvals: 898  Bestf: 1.91393      CPUTime: 3.790824    Var: 1.43249 
-Call local solver: NL2SOL 
-Initial point function value: 1.913931 
-
-------------------------------------------------------------------
- This is DN2GB (NL2SOL v2.3)
- Authors: John Dennis, David Gay, Roy Welsch
- MEX Interface J. Currie 2012
-
- Problem Properties:
- # Decision Variables:        3
- # Data Points:               6
-------------------------------------------------------------------
-
- *** SUCCESSFUL TERMINATION ***
- *** relative function convergence ***
-------------------------------------------------------------------
-
-NL2SOL ended after 5 iteration and 9 function evaluation:
-       Results: Optimal
-Local solution function value: 0.774393 
-Number of function evaluations in the local search: 11 
-CPU Time of the local search: 0.081074  seconds 
-
-Iteration: 22 NFunEvals: 949  Bestf: 0.774393      CPUTime: 4.056026    Var: 1.5028 
-Iteration: 23 NFunEvals: 980  Bestf: 0.774393      CPUTime: 4.165227    Var: 1.74779 
-Iteration: 24 NFunEvals: 1021  Bestf: 0.774393      CPUTime: 4.305628    Var: 1.99649 
-Iteration: 25 NFunEvals: 1057  Bestf: 0.774393      CPUTime: 4.430428    Var: 1.47596 
-Iteration: 26 NFunEvals: 1092  Bestf: 0.774393      CPUTime: 4.555229    Var: 1.54934 
-Iteration: 27 NFunEvals: 1131  Bestf: 0.774393      CPUTime: 4.695630    Var: 0.0105928 
-Iteration: 28 NFunEvals: 1165  Bestf: 0.774393      CPUTime: 4.820431    Var: 0.000698595 
-Iteration: 29 NFunEvals: 1201  Bestf: 0.774393      CPUTime: 4.945232    Var: 0.000239053 
-Iteration: 30 NFunEvals: 1234  Bestf: 0.774393      CPUTime: 5.070032    Var: 7.74061e-06 
-Iteration: 31 NFunEvals: 1266  Bestf: 0.774393      CPUTime: 5.179233    Var: 134845 
-Call local solver: NL2SOL 
-Initial point function value: 0.779643 
+Initial point function value: 1.003523 
 
 ------------------------------------------------------------------
  This is DN2GB (NL2SOL v2.3)
@@ -148,20 +100,20 @@ NL2SOL ended after 3 iteration and 5 function evaluation:
        Results: Singular convergence
 Local solution function value: 0.774393 
 Number of function evaluations in the local search: 7 
-CPU Time of the local search: 0.056444  seconds 
+CPU Time of the local search: 0.054009  seconds 
 
-Iteration: 32 NFunEvals: 1315  Bestf: 0.774393      CPUTime: 5.506835    Var: 134845 
-Iteration: 33 NFunEvals: 1359  Bestf: 0.774393      CPUTime: 5.662836    Var: 86301.6 
-Iteration: 34 NFunEvals: 1414  Bestf: 0.774393      CPUTime: 5.834437    Var: 105901 
-Iteration: 35 NFunEvals: 1449  Bestf: 0.774393      CPUTime: 5.974838    Var: 95968.7 
-Iteration: 36 NFunEvals: 1485  Bestf: 0.774393      CPUTime: 6.068439    Var: 85490.7 
-Iteration: 37 NFunEvals: 1518  Bestf: 0.774393      CPUTime: 6.193240    Var: 62602.5 
-Iteration: 38 NFunEvals: 1551  Bestf: 0.774393      CPUTime: 6.271240    Var: 49248.9 
-Iteration: 39 NFunEvals: 1583  Bestf: 0.774393      CPUTime: 6.364841    Var: 48304.1 
-Iteration: 40 NFunEvals: 1617  Bestf: 0.774393      CPUTime: 6.505242    Var: 50573.8 
-Iteration: 41 NFunEvals: 1649  Bestf: 0.774393      CPUTime: 6.583242    Var: 50615.9 
+Iteration: 12 NFunEvals: 488  Bestf: 0.774393      CPUTime: 2.262015    Var: 1.55548 
+Iteration: 13 NFunEvals: 521  Bestf: 0.774393      CPUTime: 2.402415    Var: 1.5527 
+Iteration: 14 NFunEvals: 553  Bestf: 0.774393      CPUTime: 2.496016    Var: 1.55267 
+Iteration: 15 NFunEvals: 593  Bestf: 0.774393      CPUTime: 2.652017    Var: 101680 
+Iteration: 16 NFunEvals: 626  Bestf: 0.774393      CPUTime: 2.761218    Var: 52813.5 
+Iteration: 17 NFunEvals: 660  Bestf: 0.774393      CPUTime: 2.886018    Var: 8.19595 
+Iteration: 18 NFunEvals: 692  Bestf: 0.774393      CPUTime: 2.979619    Var: 2.66123 
+Iteration: 19 NFunEvals: 730  Bestf: 0.774393      CPUTime: 3.120020    Var: 2.46485 
+Iteration: 20 NFunEvals: 767  Bestf: 0.774393      CPUTime: 3.260421    Var: 2.51347 
+Iteration: 21 NFunEvals: 810  Bestf: 0.774393      CPUTime: 3.400822    Var: 105803 
 Call local solver: NL2SOL 
-Initial point function value: 463.818156 
+Initial point function value: 633.554149 
 
 ------------------------------------------------------------------
  This is DN2GB (NL2SOL v2.3)
@@ -177,20 +129,377 @@ Initial point function value: 463.818156
  *** relative function convergence ***
 ------------------------------------------------------------------
 
-NL2SOL ended after 39 iteration and 70 function evaluation:
+NL2SOL ended after 3 iteration and 5 function evaluation:
+       Results: Optimal
+Local solution function value: 631.511 
+Number of function evaluations in the local search: 7 
+CPU Time of the local search: 0.040597  seconds 
+
+Iteration: 22 NFunEvals: 855  Bestf: 0.774393      CPUTime: 3.619223    Var: 97479.1 
+Iteration: 23 NFunEvals: 888  Bestf: 0.774393      CPUTime: 3.728424    Var: 84473.3 
+Iteration: 24 NFunEvals: 926  Bestf: 0.774393      CPUTime: 3.853225    Var: 51231.5 
+Iteration: 25 NFunEvals: 967  Bestf: 0.774393      CPUTime: 3.978026    Var: 40.0054 
+Iteration: 26 NFunEvals: 1004  Bestf: 0.774393      CPUTime: 4.087226    Var: 2.92107 
+Iteration: 27 NFunEvals: 1036  Bestf: 0.774393      CPUTime: 4.180827    Var: 2.3603 
+Iteration: 28 NFunEvals: 1069  Bestf: 0.774393      CPUTime: 4.305628    Var: 2.52499 
+Iteration: 29 NFunEvals: 1100  Bestf: 0.774393      CPUTime: 4.399228    Var: 2.53293 
+Iteration: 30 NFunEvals: 1132  Bestf: 0.774393      CPUTime: 4.492829    Var: 2.55505 
+Iteration: 31 NFunEvals: 1162  Bestf: 0.774393      CPUTime: 4.602029    Var: 2.55505 
+Call local solver: NL2SOL 
+Initial point function value: 4.625129 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 3 iteration and 5 function evaluation:
+       Results: Singular convergence
+Local solution function value: 3.87809 
+Number of function evaluations in the local search: 7 
+CPU Time of the local search: 0.053124  seconds 
+
+Iteration: 32 NFunEvals: 1204  Bestf: 0.774393      CPUTime: 4.820431    Var: 1494.51 
+Iteration: 33 NFunEvals: 1236  Bestf: 0.774393      CPUTime: 4.945232    Var: 26.1221 
+Iteration: 34 NFunEvals: 1268  Bestf: 0.774393      CPUTime: 5.054432    Var: 1.56027 
+Iteration: 35 NFunEvals: 1305  Bestf: 0.774393      CPUTime: 5.179233    Var: 1.5656 
+Iteration: 36 NFunEvals: 1339  Bestf: 0.774393      CPUTime: 5.319634    Var: 1.53643 
+Iteration: 37 NFunEvals: 1375  Bestf: 0.774393      CPUTime: 5.428835    Var: 0.145364 
+Iteration: 38 NFunEvals: 1408  Bestf: 0.774393      CPUTime: 5.553636    Var: 2.83268e-05 
+Iteration: 39 NFunEvals: 1444  Bestf: 0.774393      CPUTime: 5.709637    Var: 32421.9 
+Iteration: 40 NFunEvals: 1480  Bestf: 0.774393      CPUTime: 5.850037    Var: 1186.07 
+Iteration: 41 NFunEvals: 1524  Bestf: 0.774393      CPUTime: 6.006038    Var: 40095.5 
+Call local solver: NL2SOL 
+Initial point function value: 5.109830 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 5 iteration and 7 function evaluation:
+       Results: Optimal
+Local solution function value: 3.87809 
+Number of function evaluations in the local search: 9 
+CPU Time of the local search: 0.085714  seconds 
+
+Iteration: 42 NFunEvals: 1570  Bestf: 0.774393      CPUTime: 6.255640    Var: 7.27797 
+Iteration: 43 NFunEvals: 1609  Bestf: 0.774393      CPUTime: 6.396041    Var: 20156.5 
+Iteration: 44 NFunEvals: 1651  Bestf: 0.774393      CPUTime: 6.552042    Var: 1.84112 
+Iteration: 45 NFunEvals: 1686  Bestf: 0.774393      CPUTime: 6.692443    Var: 66759.2 
+Iteration: 46 NFunEvals: 1725  Bestf: 0.774393      CPUTime: 6.864044    Var: 65412.2 
+Iteration: 47 NFunEvals: 1762  Bestf: 0.774393      CPUTime: 6.988845    Var: 1787.22 
+Iteration: 48 NFunEvals: 1797  Bestf: 0.774393      CPUTime: 7.098045    Var: 33.8376 
+Iteration: 49 NFunEvals: 1836  Bestf: 0.774393      CPUTime: 7.254046    Var: 1.7382 
+Iteration: 50 NFunEvals: 1876  Bestf: 0.774393      CPUTime: 7.425648    Var: 66877.3 
+Iteration: 51 NFunEvals: 1910  Bestf: 0.774393      CPUTime: 7.519248    Var: 3527.95 
+Call local solver: NL2SOL 
+Initial point function value: 463.616854 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 29 iteration and 60 function evaluation:
+       Results: Singular convergence
+Local solution function value: 3.87809 
+Number of function evaluations in the local search: 62 
+CPU Time of the local search: 0.316660  seconds 
+
+Iteration: 52 NFunEvals: 2005  Bestf: 0.774393      CPUTime: 7.987251    Var: 18.187 
+Iteration: 53 NFunEvals: 2039  Bestf: 0.774393      CPUTime: 8.080852    Var: 3.0896 
+Iteration: 54 NFunEvals: 2079  Bestf: 0.774393      CPUTime: 8.236853    Var: 2.4923 
+Iteration: 55 NFunEvals: 2115  Bestf: 0.774393      CPUTime: 8.346053    Var: 2.72349 
+Iteration: 56 NFunEvals: 2152  Bestf: 0.774393      CPUTime: 8.470854    Var: 13155 
+Iteration: 57 NFunEvals: 2185  Bestf: 0.774393      CPUTime: 8.580055    Var: 4.45518 
+Iteration: 58 NFunEvals: 2225  Bestf: 0.774393      CPUTime: 8.720456    Var: 2.7736 
+Iteration: 59 NFunEvals: 2262  Bestf: 0.774393      CPUTime: 8.845257    Var: 2.49257 
+Iteration: 60 NFunEvals: 2296  Bestf: 0.774393      CPUTime: 8.970057    Var: 2.50878 
+Iteration: 61 NFunEvals: 2333  Bestf: 0.774393      CPUTime: 9.110458    Var: 2.48153 
+Call local solver: NL2SOL 
+Initial point function value: 1.946532 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 7 iteration and 13 function evaluation:
        Results: Optimal
 Local solution function value: 0.774393 
-Number of function evaluations in the local search: 72 
-CPU Time of the local search: 0.425987  seconds 
+Number of function evaluations in the local search: 15 
+CPU Time of the local search: 0.109073  seconds 
 
-Iteration: 42 NFunEvals: 1762  Bestf: 0.774393      CPUTime: 7.207246    Var: 76989.3 
-Iteration: 43 NFunEvals: 1797  Bestf: 0.774393      CPUTime: 7.316447    Var: 44780.2 
-Iteration: 44 NFunEvals: 1830  Bestf: 0.774393      CPUTime: 7.425648    Var: 26206.9 
-Iteration: 45 NFunEvals: 1865  Bestf: 0.774393      CPUTime: 7.550448    Var: 26533 
-Iteration: 46 NFunEvals: 1902  Bestf: 0.774393      CPUTime: 7.675249    Var: 23960.5 
-Iteration: 47 NFunEvals: 1935  Bestf: 0.774393      CPUTime: 7.784450    Var: 23975.8 
-Iteration: 48 NFunEvals: 1970  Bestf: 0.774393      CPUTime: 7.909251    Var: 24016.1 
-Iteration: 49 NFunEvals: 2003  Bestf: 0.774393      CPUTime: 8.034051    Var: 24085.9 
+Iteration: 62 NFunEvals: 2381  Bestf: 0.774393      CPUTime: 9.360060    Var: 2.01296 
+Iteration: 63 NFunEvals: 2417  Bestf: 0.774393      CPUTime: 9.469261    Var: 1.48311 
+Iteration: 64 NFunEvals: 2449  Bestf: 0.774393      CPUTime: 9.594061    Var: 1.58639 
+Iteration: 65 NFunEvals: 2486  Bestf: 0.774393      CPUTime: 9.703262    Var: 0.265091 
+Iteration: 66 NFunEvals: 2522  Bestf: 0.774393      CPUTime: 9.828063    Var: 0.000524437 
+Iteration: 67 NFunEvals: 2556  Bestf: 0.774393      CPUTime: 10.015264    Var: 1.14973e-07 
+Iteration: 68 NFunEvals: 2593  Bestf: 0.774393      CPUTime: 10.124465    Var: 80621.9 
+Iteration: 69 NFunEvals: 2627  Bestf: 0.774393      CPUTime: 10.249266    Var: 29131.6 
+Iteration: 70 NFunEvals: 2661  Bestf: 0.774393      CPUTime: 10.374067    Var: 58607.4 
+Iteration: 71 NFunEvals: 2697  Bestf: 0.774393      CPUTime: 10.467667    Var: 21610.6 
+Call local solver: NL2SOL 
+Initial point function value: 9.858788 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 5 iteration and 7 function evaluation:
+       Results: Optimal
+Local solution function value: 3.87809 
+Number of function evaluations in the local search: 9 
+CPU Time of the local search: 0.081596  seconds 
+
+Iteration: 72 NFunEvals: 2748  Bestf: 0.774393      CPUTime: 10.732869    Var: 23825.8 
+Iteration: 73 NFunEvals: 2781  Bestf: 0.774393      CPUTime: 10.826469    Var: 10.5958 
+Iteration: 74 NFunEvals: 2821  Bestf: 0.774393      CPUTime: 10.966870    Var: 2.11952 
+Iteration: 75 NFunEvals: 2854  Bestf: 0.774393      CPUTime: 11.060471    Var: 0.63216 
+Iteration: 76 NFunEvals: 2887  Bestf: 0.774393      CPUTime: 11.154071    Var: 0.0157311 
+Iteration: 77 NFunEvals: 2922  Bestf: 0.774393      CPUTime: 11.278872    Var: 0.000371589 
+Iteration: 78 NFunEvals: 2959  Bestf: 0.774393      CPUTime: 11.403673    Var: 9.50056e-05 
+Iteration: 79 NFunEvals: 3008  Bestf: 0.774393      CPUTime: 11.590874    Var: 66942.3 
+Iteration: 80 NFunEvals: 3051  Bestf: 0.774393      CPUTime: 11.746875    Var: 66311.9 
+Iteration: 81 NFunEvals: 3086  Bestf: 0.774393      CPUTime: 11.887276    Var: 46289.3 
+Call local solver: NL2SOL 
+Initial point function value: 0.774996 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 2 iteration and 4 function evaluation:
+       Results: Singular convergence
+Local solution function value: 0.774393 
+Number of function evaluations in the local search: 6 
+CPU Time of the local search: 0.046932  seconds 
+
+Iteration: 82 NFunEvals: 3129  Bestf: 0.774393      CPUTime: 12.090078    Var: 56675.1 
+Iteration: 83 NFunEvals: 3171  Bestf: 0.774393      CPUTime: 12.261679    Var: 25077.1 
+Iteration: 84 NFunEvals: 3204  Bestf: 0.774393      CPUTime: 12.402079    Var: 24565.8 
+Iteration: 85 NFunEvals: 3237  Bestf: 0.774393      CPUTime: 12.526880    Var: 24617.8 
+Iteration: 86 NFunEvals: 3271  Bestf: 0.774393      CPUTime: 12.667281    Var: 24015.1 
+Iteration: 87 NFunEvals: 3310  Bestf: 0.774393      CPUTime: 12.807682    Var: 6491.96 
+Iteration: 88 NFunEvals: 3347  Bestf: 0.774393      CPUTime: 12.948083    Var: 37296 
+Iteration: 89 NFunEvals: 3383  Bestf: 0.774393      CPUTime: 13.072884    Var: 37376.4 
+Iteration: 90 NFunEvals: 3418  Bestf: 0.774393      CPUTime: 13.213285    Var: 70925.7 
+Iteration: 91 NFunEvals: 3457  Bestf: 0.774393      CPUTime: 13.353686    Var: 23847.6 
+Call local solver: NL2SOL 
+Initial point function value: 490.457646 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 8 iteration and 16 function evaluation:
+       Results: Singular convergence
+Local solution function value: 379.547 
+Number of function evaluations in the local search: 18 
+CPU Time of the local search: 0.082022  seconds 
+
+Iteration: 92 NFunEvals: 3509  Bestf: 0.774393      CPUTime: 13.603287    Var: 23812.4 
+Iteration: 93 NFunEvals: 3546  Bestf: 0.774393      CPUTime: 13.759288    Var: 23834.1 
+Iteration: 94 NFunEvals: 3578  Bestf: 0.774393      CPUTime: 13.868489    Var: 23834.3 
+Iteration: 95 NFunEvals: 3610  Bestf: 0.774393      CPUTime: 13.993290    Var: 23834.3 
+Iteration: 96 NFunEvals: 3645  Bestf: 0.774393      CPUTime: 14.102490    Var: 22977.8 
+Iteration: 97 NFunEvals: 3678  Bestf: 0.774393      CPUTime: 14.211691    Var: 23750.9 
+Iteration: 98 NFunEvals: 3708  Bestf: 0.774393      CPUTime: 14.336492    Var: 23750.9 
+Iteration: 99 NFunEvals: 3738  Bestf: 0.774393      CPUTime: 14.476893    Var: 23750.9 
+Iteration: 100 NFunEvals: 3771  Bestf: 0.774393      CPUTime: 14.586094    Var: 265.165 
+Iteration: 101 NFunEvals: 3807  Bestf: 0.774393      CPUTime: 14.679694    Var: 66369 
+Call local solver: NL2SOL 
+Initial point function value: 8.730888 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 12 iteration and 21 function evaluation:
+       Results: Singular convergence
+Local solution function value: 0.774393 
+Number of function evaluations in the local search: 23 
+CPU Time of the local search: 0.170395  seconds 
+
+Iteration: 102 NFunEvals: 3867  Bestf: 0.774393      CPUTime: 14.991696    Var: 24197 
+Iteration: 103 NFunEvals: 3900  Bestf: 0.774393      CPUTime: 15.085297    Var: 9924.96 
+Iteration: 104 NFunEvals: 3932  Bestf: 0.774393      CPUTime: 15.178897    Var: 1146.39 
+Iteration: 105 NFunEvals: 3964  Bestf: 0.774393      CPUTime: 15.272498    Var: 6.00822 
+Iteration: 106 NFunEvals: 4002  Bestf: 0.774393      CPUTime: 15.397299    Var: 2.48797 
+Iteration: 107 NFunEvals: 4040  Bestf: 0.774393      CPUTime: 15.537700    Var: 2.54832 
+Iteration: 108 NFunEvals: 4078  Bestf: 0.774393      CPUTime: 15.678100    Var: 1.55009 
+Iteration: 109 NFunEvals: 4112  Bestf: 0.774393      CPUTime: 15.834101    Var: 62593.3 
+Iteration: 110 NFunEvals: 4149  Bestf: 0.774393      CPUTime: 16.005703    Var: 5.25341 
+Iteration: 111 NFunEvals: 4181  Bestf: 0.774393      CPUTime: 16.130503    Var: 3.43324 
+Call local solver: NL2SOL 
+Initial point function value: 0.774714 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 2 iteration and 4 function evaluation:
+       Results: Singular convergence
+Local solution function value: 0.774393 
+Number of function evaluations in the local search: 6 
+CPU Time of the local search: 0.044053  seconds 
+
+Iteration: 112 NFunEvals: 4221  Bestf: 0.774393      CPUTime: 16.333305    Var: 3.35216 
+Iteration: 113 NFunEvals: 4266  Bestf: 0.774393      CPUTime: 16.520506    Var: 66672.1 
+Iteration: 114 NFunEvals: 4297  Bestf: 0.774393      CPUTime: 16.645307    Var: 66179.3 
+Iteration: 115 NFunEvals: 4333  Bestf: 0.774393      CPUTime: 16.801308    Var: 57223.5 
+Iteration: 116 NFunEvals: 4367  Bestf: 0.774393      CPUTime: 16.941709    Var: 23.1394 
+Iteration: 117 NFunEvals: 4399  Bestf: 0.774393      CPUTime: 17.050909    Var: 4.04667 
+Iteration: 118 NFunEvals: 4432  Bestf: 0.774393      CPUTime: 17.206910    Var: 1.53655 
+Iteration: 119 NFunEvals: 4467  Bestf: 0.774393      CPUTime: 17.347311    Var: 0.0270617 
+Iteration: 120 NFunEvals: 4502  Bestf: 0.774393      CPUTime: 17.472112    Var: 0.0206116 
+Iteration: 121 NFunEvals: 4538  Bestf: 0.774393      CPUTime: 17.628113    Var: 0.000553507 
+Call local solver: NL2SOL 
+Initial point function value: 0.774470 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 2 iteration and 4 function evaluation:
+       Results: Optimal
+Local solution function value: 0.774393 
+Number of function evaluations in the local search: 6 
+CPU Time of the local search: 0.044018  seconds 
+
+Iteration: 122 NFunEvals: 4586  Bestf: 0.774393      CPUTime: 17.830914    Var: 55578.1 
+Iteration: 123 NFunEvals: 4624  Bestf: 0.774393      CPUTime: 17.986915    Var: 43006 
+Iteration: 124 NFunEvals: 4656  Bestf: 0.774393      CPUTime: 18.080516    Var: 44042.6 
+Iteration: 125 NFunEvals: 4691  Bestf: 0.774393      CPUTime: 18.236517    Var: 31597.4 
+Iteration: 126 NFunEvals: 4726  Bestf: 0.774393      CPUTime: 18.361318    Var: 15463.6 
+Iteration: 127 NFunEvals: 4760  Bestf: 0.774393      CPUTime: 18.470518    Var: 1240.98 
+Iteration: 128 NFunEvals: 4797  Bestf: 0.774393      CPUTime: 18.595319    Var: 0.0498184 
+Iteration: 129 NFunEvals: 4830  Bestf: 0.774393      CPUTime: 18.735720    Var: 0.0523289 
+Iteration: 130 NFunEvals: 4869  Bestf: 0.774393      CPUTime: 18.860521    Var: 132410 
+Iteration: 131 NFunEvals: 4906  Bestf: 0.774393      CPUTime: 18.969722    Var: 8.47553 
+Call local solver: NL2SOL 
+Initial point function value: 610.591922 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               6
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 24 iteration and 30 function evaluation:
+       Results: Optimal
+Local solution function value: 348.107 
+Number of function evaluations in the local search: 32 
+CPU Time of the local search: 0.276587  seconds 
+
+Iteration: 132 NFunEvals: 4975  Bestf: 0.774393      CPUTime: 19.406524    Var: 67.236 
+Iteration: 133 NFunEvals: 5012  Bestf: 0.774393      CPUTime: 19.531325    Var: 37.8337 
 
 Final local refinement with: NL2SOL 
 Initial point function value: 0.774393 
@@ -209,11 +518,11 @@ Initial point function value: 0.774393
  *** both x and relative function convergence ***
 ------------------------------------------------------------------
 
-NL2SOL ended after 1 iteration and 3 function evaluation:
+NL2SOL ended after 4 iteration and 6 function evaluation:
        Results: NL2SOL exited
 Local solution function value: 0.774393 
-Number of function evaluations in the local search: 5 
-CPU Time of the local search: 0.027119  seconds 
+Number of function evaluations in the local search: 8 
+CPU Time of the local search: 0.060344  seconds 
 
 Maximum number of function evaluations achieved
 Best solution value		0.774393
@@ -221,8 +530,8 @@ Decision vector
 	0.276593
 	0.651775
 	2.76482
-CPU time		8.06525
-Number of function evaluations		2009
+CPU time		19.6405
+Number of function evaluations		5021
 
 ------------------------------------------------------------------------------ 
  eSS R2016A - Enhanced Scatter Search    
@@ -231,110 +540,11 @@ Number of function evaluations		2009
 
 Refset size automatically calculated: 6
 Number of diverse solutions automatically calculated: 30
-Initial Point (x_0): FEASIBLE SOLUTION. Objective function value: 1.42648e+10 
-Initial Pop: NFunEvals: 38  Bestf: 2637.77      CPUTime: 0.343202    Var: 4.30808e+13 
-Iteration: 1 NFunEvals: 80  Bestf: 2567      CPUTime: 0.499203    Var: 238117 
+Initial Point (x_0): FEASIBLE SOLUTION. Objective function value: 165089 
+Initial Pop: NFunEvals: 38  Bestf: 3348.25      CPUTime: 0.296402    Var: 1.57109e+15 
+Iteration: 1 NFunEvals: 78  Bestf: 3348.25      CPUTime: 0.452403    Var: 2.41662e+06 
 Call local solver: NL2SOL 
-Initial point function value: 2567.004761 
-
-------------------------------------------------------------------
- This is DN2GB (NL2SOL v2.3)
- Authors: John Dennis, David Gay, Roy Welsch
- MEX Interface J. Currie 2012
-
- Problem Properties:
- # Decision Variables:        3
- # Data Points:               9
-------------------------------------------------------------------
-
- *** SUCCESSFUL TERMINATION ***
- *** relative function convergence ***
-------------------------------------------------------------------
-
-NL2SOL ended after 12 iteration and 20 function evaluation:
-       Results: Optimal
-Local solution function value: 5.72643 
-Number of function evaluations in the local search: 22 
-CPU Time of the local search: 0.147711  seconds 
-
-Iteration: 2 NFunEvals: 150  Bestf: 5.72643      CPUTime: 0.842405    Var: 1.02557e+06 
-Iteration: 3 NFunEvals: 188  Bestf: 5.72643      CPUTime: 0.982806    Var: 810069 
-Iteration: 4 NFunEvals: 234  Bestf: 5.72643      CPUTime: 1.138807    Var: 299565 
-Iteration: 5 NFunEvals: 277  Bestf: 5.72643      CPUTime: 1.310408    Var: 210.8 
-Iteration: 6 NFunEvals: 324  Bestf: 5.72643      CPUTime: 1.482010    Var: 2.6505 
-Iteration: 7 NFunEvals: 371  Bestf: 5.72643      CPUTime: 1.653611    Var: 0.0185047 
-Iteration: 8 NFunEvals: 415  Bestf: 5.72643      CPUTime: 1.840812    Var: 7.45069e-05 
-Iteration: 9 NFunEvals: 459  Bestf: 5.72643      CPUTime: 2.043613    Var: 1.45702e+06 
-Iteration: 10 NFunEvals: 509  Bestf: 5.72643      CPUTime: 2.230814    Var: 1.02123e+06 
-Iteration: 11 NFunEvals: 553  Bestf: 5.72643      CPUTime: 2.418015    Var: 967562 
-Call local solver: NL2SOL 
-Initial point function value: 3163.210138 
-
-------------------------------------------------------------------
- This is DN2GB (NL2SOL v2.3)
- Authors: John Dennis, David Gay, Roy Welsch
- MEX Interface J. Currie 2012
-
- Problem Properties:
- # Decision Variables:        3
- # Data Points:               9
-------------------------------------------------------------------
-
- *** SUCCESSFUL TERMINATION ***
- *** relative function convergence ***
-------------------------------------------------------------------
-
-NL2SOL ended after 9 iteration and 14 function evaluation:
-       Results: Optimal
-Local solution function value: 5.72643 
-Number of function evaluations in the local search: 16 
-CPU Time of the local search: 0.118125  seconds 
-
-Iteration: 12 NFunEvals: 613  Bestf: 5.72643      CPUTime: 2.745618    Var: 29481.9 
-Iteration: 13 NFunEvals: 652  Bestf: 5.72643      CPUTime: 2.901619    Var: 1.28291e+06 
-Iteration: 14 NFunEvals: 693  Bestf: 5.72643      CPUTime: 3.057620    Var: 57730.4 
-Iteration: 15 NFunEvals: 733  Bestf: 5.72643      CPUTime: 3.198020    Var: 1.09821e+06 
-Iteration: 16 NFunEvals: 773  Bestf: 5.72643      CPUTime: 3.354021    Var: 654396 
-Iteration: 17 NFunEvals: 812  Bestf: 5.72643      CPUTime: 3.510022    Var: 361087 
-Iteration: 18 NFunEvals: 854  Bestf: 5.72643      CPUTime: 3.666023    Var: 2760.62 
-Iteration: 19 NFunEvals: 904  Bestf: 5.72643      CPUTime: 3.868825    Var: 0.387266 
-Iteration: 20 NFunEvals: 947  Bestf: 5.72643      CPUTime: 4.024826    Var: 0.000777484 
-Iteration: 21 NFunEvals: 993  Bestf: 5.72643      CPUTime: 4.180827    Var: 3.63592e-05 
-Call local solver: NL2SOL 
-Initial point function value: 5.733846 
-
-------------------------------------------------------------------
- This is DN2GB (NL2SOL v2.3)
- Authors: John Dennis, David Gay, Roy Welsch
- MEX Interface J. Currie 2012
-
- Problem Properties:
- # Decision Variables:        3
- # Data Points:               9
-------------------------------------------------------------------
-
- *** SUCCESSFUL TERMINATION ***
- *** relative function convergence ***
-------------------------------------------------------------------
-
-NL2SOL ended after 2 iteration and 4 function evaluation:
-       Results: Optimal
-Local solution function value: 5.72643 
-Number of function evaluations in the local search: 6 
-CPU Time of the local search: 0.048600  seconds 
-
-Iteration: 22 NFunEvals: 1042  Bestf: 5.72643      CPUTime: 4.477229    Var: 1.1453e+07 
-Iteration: 23 NFunEvals: 1086  Bestf: 5.72643      CPUTime: 4.648830    Var: 46840.2 
-Iteration: 24 NFunEvals: 1129  Bestf: 5.72643      CPUTime: 4.789231    Var: 9.28861e+06 
-Iteration: 25 NFunEvals: 1177  Bestf: 5.72643      CPUTime: 4.945232    Var: 213472 
-Iteration: 26 NFunEvals: 1220  Bestf: 5.72643      CPUTime: 5.101233    Var: 616.18 
-Iteration: 27 NFunEvals: 1259  Bestf: 5.72643      CPUTime: 5.257234    Var: 0.0474251 
-Iteration: 28 NFunEvals: 1303  Bestf: 5.72643      CPUTime: 5.428835    Var: 0.0015365 
-Iteration: 29 NFunEvals: 1352  Bestf: 5.72643      CPUTime: 5.600436    Var: 1.01109e+06 
-Iteration: 30 NFunEvals: 1404  Bestf: 5.72643      CPUTime: 5.756437    Var: 1.09418e+06 
-Iteration: 31 NFunEvals: 1450  Bestf: 5.72643      CPUTime: 5.912438    Var: 1.40673e+06 
-Call local solver: NL2SOL 
-Initial point function value: 3663.626439 
+Initial point function value: 3348.253824 
 
 ------------------------------------------------------------------
  This is DN2GB (NL2SOL v2.3)
@@ -350,24 +560,57 @@ Initial point function value: 3663.626439
  *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
 ------------------------------------------------------------------
 
-NL2SOL ended after 6 iteration and 10 function evaluation:
+NL2SOL ended after 14 iteration and 67 function evaluation:
        Results: Singular convergence
-Local solution function value: 2592.14 
-Number of function evaluations in the local search: 12 
-CPU Time of the local search: 0.066387  seconds 
+Local solution function value: 4.36007 
+Number of function evaluations in the local search: 69 
+CPU Time of the local search: 0.381879  seconds 
 
-Iteration: 32 NFunEvals: 1501  Bestf: 5.72643      CPUTime: 6.146439    Var: 179013 
-Iteration: 33 NFunEvals: 1547  Bestf: 5.72643      CPUTime: 6.302440    Var: 15423.4 
-Iteration: 34 NFunEvals: 1593  Bestf: 5.72643      CPUTime: 6.458441    Var: 322.99 
-Iteration: 35 NFunEvals: 1634  Bestf: 5.72643      CPUTime: 6.598842    Var: 0.00781226 
-Iteration: 36 NFunEvals: 1678  Bestf: 5.72643      CPUTime: 6.832844    Var: 155686 
-Iteration: 37 NFunEvals: 1715  Bestf: 5.72643      CPUTime: 6.942045    Var: 586252 
-Iteration: 38 NFunEvals: 1754  Bestf: 5.72643      CPUTime: 7.098045    Var: 245665 
-Iteration: 39 NFunEvals: 1804  Bestf: 5.72643      CPUTime: 7.285247    Var: 728086 
-Iteration: 40 NFunEvals: 1850  Bestf: 5.72643      CPUTime: 7.425648    Var: 24911.2 
-Iteration: 41 NFunEvals: 1900  Bestf: 5.72643      CPUTime: 7.581649    Var: 1.82024e+06 
+Iteration: 2 NFunEvals: 190  Bestf: 4.36007      CPUTime: 1.060807    Var: 3.04519e+06 
+Iteration: 3 NFunEvals: 238  Bestf: 4.36007      CPUTime: 1.279208    Var: 849148 
+Iteration: 4 NFunEvals: 278  Bestf: 4.36007      CPUTime: 1.482010    Var: 236572 
+Iteration: 5 NFunEvals: 316  Bestf: 4.36007      CPUTime: 1.653611    Var: 18609.8 
+Iteration: 6 NFunEvals: 364  Bestf: 4.36007      CPUTime: 1.840812    Var: 23.0685 
+Iteration: 7 NFunEvals: 407  Bestf: 4.36007      CPUTime: 1.981213    Var: 0.19452 
+Iteration: 8 NFunEvals: 451  Bestf: 4.36007      CPUTime: 2.152814    Var: 0.00229226 
+Iteration: 9 NFunEvals: 494  Bestf: 4.36007      CPUTime: 2.293215    Var: 5.8846e-05 
+Iteration: 10 NFunEvals: 542  Bestf: 4.36007      CPUTime: 2.496016    Var: 1.61164e+07 
+Iteration: 11 NFunEvals: 584  Bestf: 4.36007      CPUTime: 2.636417    Var: 7.08171e+06 
 Call local solver: NL2SOL 
-Initial point function value: 5730.283287 
+Initial point function value: 7418.001761 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               9
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** both x and relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 28 iteration and 34 function evaluation:
+       Results: NL2SOL exited
+Local solution function value: 4.36006 
+Number of function evaluations in the local search: 36 
+CPU Time of the local search: 0.360901  seconds 
+
+Iteration: 12 NFunEvals: 659  Bestf: 4.36006      CPUTime: 3.213621    Var: 25278.6 
+Iteration: 13 NFunEvals: 703  Bestf: 4.36006      CPUTime: 3.416422    Var: 5.45818e+06 
+Iteration: 14 NFunEvals: 747  Bestf: 4.36006      CPUTime: 3.572423    Var: 6.1663 
+Iteration: 15 NFunEvals: 785  Bestf: 4.36006      CPUTime: 3.728424    Var: 0.00938019 
+Iteration: 16 NFunEvals: 825  Bestf: 4.36006      CPUTime: 3.868825    Var: 0.000278686 
+Iteration: 17 NFunEvals: 867  Bestf: 4.36006      CPUTime: 4.040426    Var: 1.87389e+11 
+Iteration: 18 NFunEvals: 911  Bestf: 4.36006      CPUTime: 4.196427    Var: 514039 
+Iteration: 19 NFunEvals: 956  Bestf: 4.36006      CPUTime: 4.336828    Var: 3.38333e+06 
+Iteration: 20 NFunEvals: 1006  Bestf: 4.36006      CPUTime: 4.539629    Var: 2.13829e+06 
+Iteration: 21 NFunEvals: 1052  Bestf: 4.36006      CPUTime: 4.680030    Var: 3068.55 
+Call local solver: NL2SOL 
+Initial point function value: 1157.011041 
 
 ------------------------------------------------------------------
  This is DN2GB (NL2SOL v2.3)
@@ -383,18 +626,286 @@ Initial point function value: 5730.283287
  *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
 ------------------------------------------------------------------
 
-NL2SOL ended after 5 iteration and 9 function evaluation:
+NL2SOL ended after 11 iteration and 16 function evaluation:
        Results: Singular convergence
-Local solution function value: 5.72643 
-Number of function evaluations in the local search: 11 
-CPU Time of the local search: 0.066191  seconds 
+Local solution function value: 4.36008 
+Number of function evaluations in the local search: 18 
+CPU Time of the local search: 0.158094  seconds 
 
-Iteration: 42 NFunEvals: 1956  Bestf: 5.72643      CPUTime: 7.846850    Var: 711355 
-Iteration: 43 NFunEvals: 1999  Bestf: 5.72643      CPUTime: 7.971651    Var: 186692 
-Iteration: 44 NFunEvals: 2043  Bestf: 5.72643      CPUTime: 8.143252    Var: 240839 
+Iteration: 22 NFunEvals: 1118  Bestf: 4.36006      CPUTime: 5.038832    Var: 1.56054e+06 
+Iteration: 23 NFunEvals: 1160  Bestf: 4.36006      CPUTime: 5.210433    Var: 2536.81 
+Iteration: 24 NFunEvals: 1204  Bestf: 4.36006      CPUTime: 5.413235    Var: 5.13157e+07 
+Iteration: 25 NFunEvals: 1246  Bestf: 4.36006      CPUTime: 5.569236    Var: 4.49799e+06 
+Iteration: 26 NFunEvals: 1287  Bestf: 4.36006      CPUTime: 5.725237    Var: 4397.4 
+Iteration: 27 NFunEvals: 1331  Bestf: 4.36006      CPUTime: 5.865638    Var: 14.7082 
+Iteration: 28 NFunEvals: 1376  Bestf: 4.36006      CPUTime: 6.052839    Var: 5.55061e+06 
+Iteration: 29 NFunEvals: 1420  Bestf: 4.36006      CPUTime: 6.224440    Var: 2.30446e+07 
+Iteration: 30 NFunEvals: 1463  Bestf: 4.36006      CPUTime: 6.349241    Var: 3.17336e+06 
+Iteration: 31 NFunEvals: 1509  Bestf: 4.36006      CPUTime: 6.536442    Var: 194177 
+Call local solver: NL2SOL 
+Initial point function value: 131.180568 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               9
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 11 iteration and 13 function evaluation:
+       Results: Singular convergence
+Local solution function value: 4.36006 
+Number of function evaluations in the local search: 15 
+CPU Time of the local search: 0.146361  seconds 
+
+Iteration: 32 NFunEvals: 1576  Bestf: 4.36006      CPUTime: 6.895244    Var: 413.003 
+Iteration: 33 NFunEvals: 1622  Bestf: 4.36006      CPUTime: 7.051245    Var: 0.580555 
+Iteration: 34 NFunEvals: 1663  Bestf: 4.36006      CPUTime: 7.191646    Var: 1.59505e+09 
+Iteration: 35 NFunEvals: 1703  Bestf: 4.36006      CPUTime: 7.363247    Var: 899166 
+Iteration: 36 NFunEvals: 1746  Bestf: 4.36006      CPUTime: 7.503648    Var: 5.08389e+06 
+Iteration: 37 NFunEvals: 1789  Bestf: 4.36006      CPUTime: 7.659649    Var: 9.65451e+06 
+Iteration: 38 NFunEvals: 1828  Bestf: 4.36006      CPUTime: 7.815650    Var: 1.67806e+06 
+Iteration: 39 NFunEvals: 1874  Bestf: 4.36006      CPUTime: 8.002851    Var: 4696.09 
+Iteration: 40 NFunEvals: 1914  Bestf: 4.36006      CPUTime: 8.158852    Var: 35.551 
+Iteration: 41 NFunEvals: 1958  Bestf: 4.36006      CPUTime: 8.330453    Var: 0.24209 
+Call local solver: NL2SOL 
+Initial point function value: 4.663513 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               9
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 4 iteration and 6 function evaluation:
+       Results: Singular convergence
+Local solution function value: 4.36006 
+Number of function evaluations in the local search: 8 
+CPU Time of the local search: 0.065654  seconds 
+
+Iteration: 42 NFunEvals: 2010  Bestf: 4.36006      CPUTime: 8.580055    Var: 1.61301e-05 
+Iteration: 43 NFunEvals: 2060  Bestf: 4.36006      CPUTime: 8.751656    Var: 1.15079e+07 
+Iteration: 44 NFunEvals: 2105  Bestf: 4.36006      CPUTime: 8.923257    Var: 985254 
+Iteration: 45 NFunEvals: 2142  Bestf: 4.36006      CPUTime: 9.079258    Var: 82793.7 
+Iteration: 46 NFunEvals: 2179  Bestf: 4.36006      CPUTime: 9.219659    Var: 160.348 
+Iteration: 47 NFunEvals: 2224  Bestf: 4.36006      CPUTime: 9.406860    Var: 8.69196 
+Iteration: 48 NFunEvals: 2268  Bestf: 4.36006      CPUTime: 9.609662    Var: 0.117537 
+Iteration: 49 NFunEvals: 2317  Bestf: 4.36006      CPUTime: 9.796863    Var: 0.00182613 
+Iteration: 50 NFunEvals: 2366  Bestf: 4.36006      CPUTime: 10.015264    Var: 8.48549e+06 
+Iteration: 51 NFunEvals: 2404  Bestf: 4.36006      CPUTime: 10.155665    Var: 6.06013e+06 
+Call local solver: NL2SOL 
+Initial point function value: 4505.527163 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               9
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 11 iteration and 15 function evaluation:
+       Results: Singular convergence
+Local solution function value: 4.36008 
+Number of function evaluations in the local search: 17 
+CPU Time of the local search: 0.157279  seconds 
+
+Iteration: 52 NFunEvals: 2459  Bestf: 4.36006      CPUTime: 10.514467    Var: 5.54292e+06 
+Iteration: 53 NFunEvals: 2499  Bestf: 4.36006      CPUTime: 10.654868    Var: 1.41802e+06 
+Iteration: 54 NFunEvals: 2538  Bestf: 4.36006      CPUTime: 10.888870    Var: 24.5444 
+Iteration: 55 NFunEvals: 2574  Bestf: 4.36006      CPUTime: 11.029271    Var: 0.757407 
+Iteration: 56 NFunEvals: 2613  Bestf: 4.36006      CPUTime: 11.200872    Var: 0.012263 
+Iteration: 57 NFunEvals: 2660  Bestf: 4.36006      CPUTime: 11.356873    Var: 126139 
+Iteration: 58 NFunEvals: 2703  Bestf: 4.36006      CPUTime: 11.528474    Var: 65635 
+Iteration: 59 NFunEvals: 2746  Bestf: 4.36006      CPUTime: 11.715675    Var: 2297.2 
+Iteration: 60 NFunEvals: 2791  Bestf: 4.36006      CPUTime: 11.902876    Var: 6.90366e+07 
+Iteration: 61 NFunEvals: 2835  Bestf: 4.36006      CPUTime: 12.058877    Var: 1.24008e+06 
+Call local solver: NL2SOL 
+Initial point function value: 4445.328056 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               9
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** both x and relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 28 iteration and 33 function evaluation:
+       Results: NL2SOL exited
+Local solution function value: 4.36006 
+Number of function evaluations in the local search: 35 
+CPU Time of the local search: 0.343580  seconds 
+
+Iteration: 62 NFunEvals: 2918  Bestf: 4.36006      CPUTime: 12.589281    Var: 132712 
+Iteration: 63 NFunEvals: 2964  Bestf: 4.36006      CPUTime: 12.776482    Var: 1.16626e+07 
+Iteration: 64 NFunEvals: 3017  Bestf: 4.36006      CPUTime: 12.994883    Var: 1.28527e+06 
+Iteration: 65 NFunEvals: 3061  Bestf: 4.36006      CPUTime: 13.182084    Var: 3504.6 
+Iteration: 66 NFunEvals: 3102  Bestf: 4.36006      CPUTime: 13.353686    Var: 0.0871927 
+Iteration: 67 NFunEvals: 3157  Bestf: 4.36006      CPUTime: 13.540887    Var: 7.12793e+06 
+Iteration: 68 NFunEvals: 3194  Bestf: 4.36006      CPUTime: 13.665688    Var: 194646 
+Iteration: 69 NFunEvals: 3241  Bestf: 4.36006      CPUTime: 13.821689    Var: 552.355 
+Iteration: 70 NFunEvals: 3291  Bestf: 4.36006      CPUTime: 13.993290    Var: 1.38229e+07 
+Iteration: 71 NFunEvals: 3332  Bestf: 4.36006      CPUTime: 14.149291    Var: 8.89906e+06 
+Call local solver: NL2SOL 
+Initial point function value: 7521.415967 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               9
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** both x and relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 31 iteration and 41 function evaluation:
+       Results: NL2SOL exited
+Local solution function value: 4.36006 
+Number of function evaluations in the local search: 43 
+CPU Time of the local search: 0.335296  seconds 
+
+Iteration: 72 NFunEvals: 3424  Bestf: 4.36006      CPUTime: 14.695294    Var: 483629 
+Iteration: 73 NFunEvals: 3461  Bestf: 4.36006      CPUTime: 14.820095    Var: 2182.69 
+Iteration: 74 NFunEvals: 3501  Bestf: 4.36006      CPUTime: 14.991696    Var: 944235 
+Iteration: 75 NFunEvals: 3556  Bestf: 4.36006      CPUTime: 15.194497    Var: 113342 
+Iteration: 76 NFunEvals: 3602  Bestf: 4.36006      CPUTime: 15.381699    Var: 492341 
+Iteration: 77 NFunEvals: 3644  Bestf: 4.36006      CPUTime: 15.522099    Var: 5.1954e+06 
+Iteration: 78 NFunEvals: 3695  Bestf: 4.36006      CPUTime: 15.678100    Var: 3.20978e+08 
+Iteration: 79 NFunEvals: 3736  Bestf: 4.36006      CPUTime: 15.849702    Var: 121470 
+Iteration: 80 NFunEvals: 3775  Bestf: 4.36006      CPUTime: 16.005703    Var: 9320.15 
+Iteration: 81 NFunEvals: 3815  Bestf: 4.36006      CPUTime: 16.192904    Var: 191.584 
+Call local solver: NL2SOL 
+Initial point function value: 4.389261 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               9
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 4 iteration and 6 function evaluation:
+       Results: Singular convergence
+Local solution function value: 4.36005 
+Number of function evaluations in the local search: 8 
+CPU Time of the local search: 0.065315  seconds 
+
+Iteration: 82 NFunEvals: 3866  Bestf: 4.36005      CPUTime: 16.442505    Var: 19.6986 
+Iteration: 83 NFunEvals: 3908  Bestf: 4.36005      CPUTime: 16.645307    Var: 5.83557e+08 
+Iteration: 84 NFunEvals: 3951  Bestf: 4.36005      CPUTime: 16.816908    Var: 1.11434e+06 
+Iteration: 85 NFunEvals: 3993  Bestf: 4.36005      CPUTime: 16.988509    Var: 6.18671e+06 
+Iteration: 86 NFunEvals: 4032  Bestf: 4.36005      CPUTime: 17.128910    Var: 276483 
+Iteration: 87 NFunEvals: 4074  Bestf: 4.36005      CPUTime: 17.269311    Var: 4450.08 
+Iteration: 88 NFunEvals: 4117  Bestf: 4.36005      CPUTime: 17.425312    Var: 40.8619 
+Iteration: 89 NFunEvals: 4159  Bestf: 4.36005      CPUTime: 17.581313    Var: 1.28953 
+Iteration: 90 NFunEvals: 4204  Bestf: 4.36005      CPUTime: 17.721714    Var: 0.0268994 
+Iteration: 91 NFunEvals: 4242  Bestf: 4.36005      CPUTime: 17.830914    Var: 0.000822757 
+Call local solver: NL2SOL 
+Initial point function value: 4.464659 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               9
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 5 iteration and 7 function evaluation:
+       Results: Singular convergence
+Local solution function value: 4.36008 
+Number of function evaluations in the local search: 9 
+CPU Time of the local search: 0.076863  seconds 
+
+Iteration: 92 NFunEvals: 4293  Bestf: 4.36005      CPUTime: 18.096116    Var: 3.07121e-05 
+Iteration: 93 NFunEvals: 4339  Bestf: 4.36005      CPUTime: 18.252117    Var: 8.34686e+06 
+Iteration: 94 NFunEvals: 4387  Bestf: 4.36005      CPUTime: 18.454918    Var: 3.6961e+06 
+Iteration: 95 NFunEvals: 4423  Bestf: 4.36005      CPUTime: 18.610919    Var: 696648 
+Iteration: 96 NFunEvals: 4461  Bestf: 4.36005      CPUTime: 18.782520    Var: 92633.2 
+Iteration: 97 NFunEvals: 4512  Bestf: 4.36005      CPUTime: 18.969722    Var: 8518.69 
+Iteration: 98 NFunEvals: 4551  Bestf: 4.36005      CPUTime: 19.141323    Var: 3.02304 
+Iteration: 99 NFunEvals: 4593  Bestf: 4.36005      CPUTime: 19.281724    Var: 0.00231667 
+Iteration: 100 NFunEvals: 4634  Bestf: 4.36005      CPUTime: 19.437725    Var: 5.29836e+06 
+Iteration: 101 NFunEvals: 4675  Bestf: 4.36005      CPUTime: 19.656126    Var: 2.71636e+06 
+Call local solver: NL2SOL 
+Initial point function value: 2766.814454 
+
+------------------------------------------------------------------
+ This is DN2GB (NL2SOL v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        3
+ # Data Points:               9
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** both x and relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 31 iteration and 33 function evaluation:
+       Results: NL2SOL exited
+Local solution function value: 4.36006 
+Number of function evaluations in the local search: 35 
+CPU Time of the local search: 0.358472  seconds 
+
+Iteration: 102 NFunEvals: 4757  Bestf: 4.36005      CPUTime: 20.217730    Var: 1.44629e+07 
+Iteration: 103 NFunEvals: 4801  Bestf: 4.36005      CPUTime: 20.358130    Var: 1.53086e+06 
+Iteration: 104 NFunEvals: 4850  Bestf: 4.36005      CPUTime: 20.529732    Var: 6.71314e+07 
+Iteration: 105 NFunEvals: 4898  Bestf: 4.36005      CPUTime: 20.748133    Var: 454705 
+Iteration: 106 NFunEvals: 4937  Bestf: 4.36005      CPUTime: 20.888534    Var: 118.919 
+Iteration: 107 NFunEvals: 4973  Bestf: 4.36005      CPUTime: 21.075735    Var: 0.226306 
+Iteration: 108 NFunEvals: 5012  Bestf: 4.36005      CPUTime: 21.262936    Var: 0.000237268 
 
 Final local refinement with: NL2SOL 
-Initial point function value: 5.726431 
+Initial point function value: 4.360054 
 
 ------------------------------------------------------------------
  This is DN2GB (NL2SOL v2.3)
@@ -406,54 +917,69 @@ Initial point function value: 5.726431
  # Data Points:               9
 ------------------------------------------------------------------
 
- *** SUCCESSFUL TERMINATION ***
- *** relative function convergence ***
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
 ------------------------------------------------------------------
 
 NL2SOL ended after 1 iteration and 3 function evaluation:
-       Results: Optimal
-Local solution function value: 5.726431 
+       Results: Singular convergence
+Local solution function value: 4.360054 
 Number of function evaluations in the local search: 5 
-CPU Time of the local search: 0.025015  seconds 
+CPU Time of the local search: 0.024936  seconds 
 
 Maximum number of function evaluations achieved
-Best solution value		5.72643
+Best solution value		4.36005
 Decision vector
-	0.154816
-	0.559825
-	2.74057
-CPU time		8.19005
-Number of function evaluations		2050
+	0.178013
+	0.616595
+	2.7492
+CPU time		21.3097
+Number of function evaluations		5018
 
 
 Optimisation complete
 
 Performing post fit analyses ...
 [Warning: "Calculate_chi2_GEARS" requires the Matlab statistics toolbox. This will be skipped.] 
-[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Run_GEARS', 'D:\Software\MATLAB\GEARS\Run_GEARS.m', 700)" style="font-weight:bold">Run_GEARS</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Run_GEARS.m',700,0)">line 700</a>)
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Run_GEARS', 'D:\Software\MATLAB\GEARS\Run_GEARS.m', 853)" style="font-weight:bold">Run_GEARS</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Run_GEARS.m',853,0)">line 853</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('FHN_example', 'D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m', 90)" style="font-weight:bold">FHN_example</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m',90,0)">line 90</a>)] 
 
 Plotting figures ...
 
 Creating markup reports ...
-20 out of a potential 20 files were found with the extension fig in 0.029 seconds.
-20 out of a potential 20 files were found with the extension fig in 0.022 seconds.
-2 out of a potential 4 files were found with the extension exe in 0.007 seconds.
+20 out of a potential 20 files were found with the extension fig in 0.015 seconds.
+[Warning: The requested search folder was not found] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Find_files_in_folders_GEARS', 'D:\Software\MATLAB\GEARS\GEARS_functions\GEARS_markup_functions\Find_files_in_folders_GEARS.m', 87)" style="font-weight:bold">Find_files_in_folders_GEARS</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\GEARS_functions\GEARS_markup_functions\Find_files_in_folders_GEARS.m',87,0)">line 87</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Figure_report_GEARS', 'D:\Software\MATLAB\GEARS\GEARS_functions\GEARS_markup_functions\Figure_report_GEARS.m', 167)" style="font-weight:bold">Figure_report_GEARS</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\GEARS_functions\GEARS_markup_functions\Figure_report_GEARS.m',167,0)">line 167</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Run_GEARS', 'D:\Software\MATLAB\GEARS\Run_GEARS.m', 1547)" style="font-weight:bold">Run_GEARS</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Run_GEARS.m',1547,0)">line 1547</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('FHN_example', 'D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m', 90)" style="font-weight:bold">FHN_example</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m',90,0)">line 90</a>)] 
+[Warning: The ghostscript exe was not found, searching default location] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Figure_report_GEARS', 'D:\Software\MATLAB\GEARS\GEARS_functions\GEARS_markup_functions\Figure_report_GEARS.m', 183)" style="font-weight:bold">Figure_report_GEARS</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\GEARS_functions\GEARS_markup_functions\Figure_report_GEARS.m',183,0)">line 183</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Run_GEARS', 'D:\Software\MATLAB\GEARS\Run_GEARS.m', 1547)" style="font-weight:bold">Run_GEARS</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Run_GEARS.m',1547,0)">line 1547</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('FHN_example', 'D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m', 90)" style="font-weight:bold">FHN_example</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m',90,0)">line 90</a>)] 
+3 out of a potential 714 files were found with the extension exe in 0.249 seconds.
+No files with the extension exe were found.
+Ghostscript found in the default location
 
-    <strong>Parameter</strong><strong>       Value    </strong><strong>    Confidence </strong><strong>    Coeff_of_var</strong><strong>       Bounds_status   </strong>
-    <strong>_________</strong>    <strong>____________</strong>    <strong>___________</strong>    <strong>____________</strong>    <strong>___________________</strong>
+    <strong>Parameter</strong><strong>      Value  </strong><strong>    Confidence_95</strong><strong>    Coeff_of_var</strong><strong>       Bounds_status   </strong>
+    <strong>_________</strong>    <strong>_________</strong>    <strong>_____________</strong>    <strong>____________</strong>    <strong>___________________</strong>
 
-    'a'          [1.5482e-01]    '+-0.29195'    [1.8858e+02]    'Bounds not active'
-    'b'          [5.5983e-01]    '+-0.37249'    [6.6536e+01]    'Bounds not active'
-    'g'          [2.7406e+00]    '+- 0.3822'    [1.3946e+01]    'Bounds not active'
+    'a'          '0.17801'    '+-0.0049988'    '1.4327'        'Bounds not active'
+    'b'          '0.61659'    '+- 0.017286'    '1.4304'        'Bounds not active'
+    'g'          ' 2.7492'    '+- 0.072126'    '1.3385'        'Bounds not active'
 
 Please note that the confidence here is calculated using the first order approximation via the FIM and may be inaccurate.
+The FIM's condition number is: 209.2906. The FIM is not singular.
 
 
-GEARS analysis completed in 21.5749 seconds
+GEARS analysis completed in 44.6163 seconds
+
+[Warning: 2 warning(s) were found, please consult the html warning log or Results.Warning_log.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Run_GEARS', 'D:\Software\MATLAB\GEARS\Run_GEARS.m', 1793)" style="font-weight:bold">Run_GEARS</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Run_GEARS.m',1793,0)">line 1793</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('FHN_example', 'D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m', 90)" style="font-weight:bold">FHN_example</a> (<a href="matlab: opentoline('D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example.m',90,0)">line 90</a>)] 
 
 Please find all your results in the results folder requested:
-<a href="matlab: cd('D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_example_results_2'); ">FHN_example_results_2 <-- Use this link to go there.</a>
+<a href="matlab: cd('D:\Software\MATLAB\GEARS\Examples\The_Fitzhugh_Nagumo_model\FHN_TEST'); ">FHN_TEST <-- Use this link to go there.</a>
 
 . .   . .   . .
  |     |     | 
