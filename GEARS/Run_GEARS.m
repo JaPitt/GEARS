@@ -57,6 +57,13 @@ function [Results, Processed_fitting_data, Processed_validation_data] = Run_GEAR
 	end
 
 
+%% Initialise warning log
+
+Warning_log = cell(10^5, 1);
+
+Num_warnings = 0;
+
+
 %% Check inputs
 
 Ins = who; % What is in the workspace.
@@ -83,6 +90,10 @@ Total_time_taken = cputime; % Timer
 
         Processed_validation_data = []; % For the output.
 
+        Num_warnings = Num_warnings + 1;
+
+        Warning_log{Num_warnings} = 'You have not provided any validation data. We highly recommended that you provide GEARS with validation data.';
+
         end
         
     else 
@@ -90,7 +101,11 @@ Total_time_taken = cputime; % Timer
     Val = false;
     
     warning('You have not provided any validation data. I highly recommended that you provide GEARS with validation data.')
-        
+
+    Num_warnings = Num_warnings + 1;
+
+    Warning_log{Num_warnings} = 'You have not provided any validation data. We highly recommended that you provide GEARS with validation data.';
+
     end
       
     if ~ischar(Results_folder) % Check the results folder is a string.
@@ -470,7 +485,7 @@ Has_maxtime = false;
 
             Testing_point = (problem.x_U - problem.x_L).*rand(size(problem.x_L)) + problem.x_L; % Random point.
 
-            Cost_function_GEARS(Testing_point, Processed_fitting_data, Simulate, Int_opts, 0);
+            Cost_function_GEARS(Testing_point, Processed_fitting_data, Simulate, Int_opts, 0, 0);
 
             end
 
@@ -528,11 +543,39 @@ Seed = rng;
 
     clear Cost_function_GEARS % To clear any persistent variables from the memory.
 
-    Results_initial_run = MEIGO(problem, MEIGO_options, Meigo_method, Processed_fitting_data, Simulate, Int_opts, true); % Run exploratory estimation.
+    Results_initial_run = MEIGO(problem, MEIGO_options, Meigo_method, Processed_fitting_data, Simulate, Int_opts, true, true); % Run exploratory estimation.
 
     else
 
-    Results_initial_run = MEIGO(problem, MEIGO_options, Meigo_method, Processed_fitting_data, Simulate, Int_opts, false); % Run the estimation.
+    Results_initial_run = MEIGO(problem, MEIGO_options, Meigo_method, Processed_fitting_data, Simulate, Int_opts, false, true); % Run the estimation.
+
+    end
+
+    if Results_initial_run.Num_local_searches_at_bounds ~= 0
+
+    Num_warnings = Num_warnings + 1;
+    
+    Warning_log{Num_warnings} = [num2str(Results_initial_run.Num_local_searches_at_bounds) ' of ' num2str(Results_initial_run.Num_local_searches_performed) ' local searches in the non-regularised estimation hit the bounds.'];
+
+    end
+
+%% Report the intergation status of the evaluations in the initial optimisation
+
+[~, ~, ~, ~, Int_status_output_no_reg] = Cost_function_GEARS(ones(length(problem.x_0), 1), Processed_fitting_data, Simulate, Int_opts, false, true); % Call the cost function to get the status results.
+
+Num_int_no_reg = Int_status_output_no_reg.Num_int - 1; % The minus one accounts for the call above.
+    
+Int_status_no_reg = Int_status_output_no_reg.Int_status(1:Num_int_no_reg); % The status of each integration in the initial optimisation.
+
+Num_failed_ints_no_reg = sum(Int_status_no_reg < 0); % Negative values indicate failed integration.
+
+    if Num_failed_ints_no_reg ~= 0
+
+    warning([num2str(Num_failed_ints_no_reg) ' of ' num2str(Num_int_no_reg) ' integration failed in the non-regularised estimation.'])
+
+    Num_warnings = Num_warnings + 1;
+
+    Warning_log{Num_warnings} = [num2str(Num_failed_ints_no_reg) ' of ' num2str(Num_int_no_reg) ' integration failed in the non-regularised estimation.'];
 
     end
 
@@ -541,15 +584,21 @@ Seed = rng;
 
     if ~Run_standard_optimisation
 
-    [~, ~, ~, Sampling_output] = Cost_function_GEARS(ones(length(problem.x_0), 1), Processed_fitting_data, Simulate, Int_opts, true); % Call the cost function to get the sampling results.
+    [~, ~, ~, Sampling_output, ~] = Cost_function_GEARS(ones(length(problem.x_0), 1), Processed_fitting_data, Simulate, Int_opts, true, false); % Call the cost function to get the sampling results.
 
     clear Cost_function_GEARS % To clear the persistent variables from the memory.
 
-    Num_sample_points = Sampling_output.Num_sample_points - 1; % The minus one accounts for the call above
+    Num_sample_points = Sampling_output.Num_sample_points - 1; % The minus one accounts for the call above. This is equal to Num_failed_ints_no_reg.
     
     Param_sample_points = real(Sampling_output.Param_sample_points(1:Num_sample_points, :)); % Extract the sampling infomation. The real fixes a bug where tiny complex parts are added to parameter values.
 
     Param_sample_costs = real(Sampling_output.Param_sample_costs(1:Num_sample_points)); % Extract the sampling infomation
+
+    Param_sample_points = Param_sample_points(Int_status_no_reg >= 0, :); % Remove points at which the intergration failed.
+
+    Param_sample_costs = Param_sample_costs(Int_status_no_reg >= 0); % Remove points at which the intergration failed.
+
+    Num_sample_points = length(Param_sample_costs); % In case some intergrations failed we correct for the length.
 
     Initial_cost = min(Param_sample_costs); % Cost solution to the first estimation.
 
@@ -568,16 +617,20 @@ Seed = rng;
 
         else
 
-        [P_ref, Cost_cut_offs, problem] = Analyse_samples(Param_sample_points, Param_sample_costs, problem, Initial_params); % Calculate P_ref, Cost_cut_offs and new parameter bounds in 2nd function in Run_GEARS.   
+        [P_ref, Cost_cut_offs, problem] = Analyse_samples(Param_sample_points, Param_sample_costs, problem, Initial_params); % Calculate P_ref, Cost_cut_offs and new parameter bounds in 2nd function in Run_GEARS.         
 
         end
 
-    alpha = (median(Cost_cut_offs) - Initial_cost)/((diag(1./(P_ref))*(Initial_params' - P_ref))'*(diag(1./((P_ref)))*(Initial_params' - P_ref))); % Calculate the regularisation parameter alpha.
+    P_ref((P_ref' < problem.x_L)') = problem.x_L((P_ref' < problem.x_L)');
+
+    P_ref((P_ref' > problem.x_U)') = problem.x_U((P_ref' > problem.x_U)');
+
+    W = diag(1./(max([Initial_params' P_ref], [], 2))); % The normalisation for the regularisation. 
+
+    alpha = (median(Cost_cut_offs) - Initial_cost)/((W*(Initial_params' - P_ref))'*(W*(Initial_params' - P_ref))); % Calculate the regularisation parameter alpha.
 
 
-    %% Run MEIGO 2nd parameter estimation with regularisation and reduced bounds 
-
-    problem.x_0 = (problem.x_U - problem.x_L).*rand(size(problem.x_L)) + problem.x_L; % Random initial point.
+    %% Run MEIGO 2nd parameter estimation with regularisation and reduced bounds   
 
     problem.f = 'Cost_function_regularised_GEARS'; % Now use this cost function.
 
@@ -587,11 +640,111 @@ Seed = rng;
 
         end
 
-    Results_2nd_run = MEIGO(problem, MEIGO_options, Meigo_method, Processed_fitting_data, Simulate, Int_opts, alpha, P_ref); % Run the final regularised estimation.
+    Counter_reg_opt = 0;
 
+    Keep_going = 1;
+
+    problem.x_0 = P_ref; % Initial point.
+
+        while  Keep_going     
+   
+        clear Cost_function_regularised_GEARS % Clear the status as a persistent variable from the memory
+
+            if Counter_reg_opt > 0 && Counter_reg_opt < 6
+
+            problem.x_L = floor(problem.x_L - (Model_information.Param_bounds_upper - Model_information.Param_bounds_lower)/10);
+
+            problem.x_L(problem.x_L < Model_information.Param_bounds_lower) = Model_information.Param_bounds_lower(problem.x_L < Model_information.Param_bounds_lower);
+
+            problem.x_U = ceil(problem.x_U + (Model_information.Param_bounds_upper - Model_information.Param_bounds_lower)/10);
+
+            problem.x_U(problem.x_U > Model_information.Param_bounds_upper) = Model_information.Param_bounds_upper(problem.x_U > Model_information.Param_bounds_upper);
+
+            end       
+ 
+            if Counter_reg_opt == 6 % Get out of the loop if the correction does not help.
+
+            problem.x_L = Model_information.Param_bounds_lower;
+    
+            problem.x_U = Model_information.Param_bounds_upper;
+
+            Num_warnings = Num_warnings + 1;
+
+            Warning_log{Num_warnings} = 'The parameter bounding has failed after 5 corrective steps, bounds will be set to the original values. Please try increasing the computational budget given to the solver.';
+
+            end
+
+        Results_2nd_run = MEIGO(problem, MEIGO_options, Meigo_method, Processed_fitting_data, Simulate, Int_opts, alpha, P_ref, W, true); % Run the final regularised estimation.
+
+        Bounds_test_point = Results_2nd_run.xbest;
+
+        Counter_reg_opt = Counter_reg_opt + 1;        
+
+        Cost_2nd_estim = Cost_function_GEARS(Results_2nd_run.xbest, Processed_fitting_data, Simulate, Int_opts, 0, 0);
+
+        % If the estimated parameter values are at the new bounds, but inside the original bounds.
+        Boundary_test_1 = sum((problem.x_L ~= Model_information.Param_bounds_lower & Bounds_test_point < (problem.x_L + 0.0001*problem.x_L)) | (problem.x_U ~= Model_information.Param_bounds_upper & Bounds_test_point > problem.x_U - 0.0001*problem.x_U)) > 0;
+
+        % If the regularised estimate has a much worse fit than the non-regularised one, and the reduced bounds can be extended within the orginal ones.
+        Boundary_test_2 = Cost_2nd_estim > 10*Results_initial_run.fbest & ~(isequal(problem.x_L, Model_information.Param_bounds_lower) && isequal(problem.x_U, Model_information.Param_bounds_upper));
+
+            if Boundary_test_1
+
+            warning('The regularised parameter estimate has hit the reduced bounds, these bounds will be extended.')   
+         
+            Num_warnings = Num_warnings + 1;
+
+            Warning_log{Num_warnings} = 'The regularised parameter estimate has hit the reduced bounds, these bounds will be extended.';
+
+            end
+
+            if Boundary_test_2
+
+            warning('The regularised parameter estimate has a much higher cost than the non-regularised estimate, this is most likely a local solution. The reduced bounds will be extended to try and prevent this.')   
+         
+            Num_warnings = Num_warnings + 1;
+
+            Warning_log{Num_warnings} = 'The regularised parameter estimate has a much higher cost than the non-regularised estimate, this is most likely a local solution. The reduced bounds will be extended to try and prevent this.';
+
+            end            
+
+        Keep_going = Boundary_test_1 || Boundary_test_2;
+    
+        end
+
+    [~, ~, ~, Int_status_output_reg] = Cost_function_regularised_GEARS(ones(length(problem.x_0), 1), Processed_fitting_data, Simulate, Int_opts, 1, ones(length(problem.x_0), 1), W, true); % Call the cost function to get the status results.
+
+    Num_int_reg = Int_status_output_reg.Num_int - 1; % The minus one accounts for the call above.
+
+    Int_status_reg = Int_status_output_reg.Int_status(1:Num_int_reg); % The status of each intergration in the initial optimisation.
+
+    Num_failed_ints_reg = sum(Int_status_reg < 0); % Negative values indicate failed intergration.
+
+        if Num_failed_ints_reg ~= 0
+
+        warning([num2str(Num_failed_ints_reg) ' of ' num2str(Num_int_reg) ' integrations failed in the regularised estimation.'])
+
+        Num_warnings = Num_warnings + 1;
+
+        Warning_log{Num_warnings} = [num2str(Num_failed_ints_reg) ' of ' num2str(Num_int_reg) ' integrations failed in the regularised estimation.'];
+
+        end
+
+        if Results_2nd_run.Num_local_searches_at_bounds ~= 0
+
+        Num_warnings = Num_warnings + 1;
+
+        Warning_log{Num_warnings} = [num2str(Results_2nd_run.Num_local_searches_at_bounds) ' of ' num2str(Results_2nd_run.Num_local_searches_performed) ' local searches in the regularised estimation hit the bounds.'];
+
+        end
+
+    clear Cost_function_regularised_GEARS % Clear the status as a persistent variable from the memory
+        
 	else
     
     Initial_params = Results_initial_run.xbest;
+
+    clear Cost_function_GEARS
 
     end
  
@@ -698,6 +851,10 @@ disp('Optimisation complete')
         Calculate_chi2 = false;    
         
         warning('"Calculate_chi2_GEARS" requires the Matlab statistics toolbox. This will be skipped.')   
+
+        Num_warnings = Num_warnings + 1;
+
+        Warning_log{Num_warnings} = '"Calculate_chi2_GEARS" requires the Matlab statistics toolbox. This will be skipped.';
             
         end
         
@@ -899,7 +1056,11 @@ disp('Optimisation complete')
 
             else
 
-            warning('Plot_bounds_param_confidence_GEARS requires both Plot_bounds_param_confidence and Calculate_parameter_confidence to be true. This will be skipped') 
+            warning('Plot_bounds_param_confidence_GEARS requires both Plot_bounds_param_confidence and Calculate_parameter_confidence to be true. This will be skipped.') 
+
+            Num_warnings = Num_warnings + 1;
+
+            Warning_log{Num_warnings} = 'Plot_bounds_param_confidence_GEARS requires both Plot_bounds_param_confidence and Calculate_parameter_confidence to be true. This will be skipped.';
 
             end
 
@@ -968,6 +1129,10 @@ disp('Optimisation complete')
             else
 
             warning('Convergence curves will not be plotted for multi-starts.')
+
+            Num_warnings = Num_warnings + 1;
+
+            Warning_log{Num_warnings} = 'Convergence curves will not be plotted for multi-starts.';
 
             end
         end  
@@ -1298,10 +1463,10 @@ Results.Simulation_handle = Simulate;
     Line_spaces(1)
     
     disp('Creating markup reports ...')  
-    
-    Results.Markup_tag = [Model_name ' ' char(datetime)]; % A tag used for identification.
-        
+            
     end
+
+    Results.Markup_tag = [Model_name ' ' char(datetime)]; % A tag used for identification.
     
     
 %% Export to xls
@@ -1319,24 +1484,7 @@ Results.Simulation_handle = Simulate;
         end
         
     end
-  
-    
-%% Export to html 
-
-    if Export_results_to_html
-
-        if Val
-
-        Write_GEARS_results_html_summary(Results, Processed_fitting_data, [Results_folder filesep 'Reports' filesep 'GEARS_results_summary_html'], Processed_validation_data, [Results_folder filesep 'Figures']);    
-
-        else
-
-        Write_GEARS_results_html_summary(Results, Processed_fitting_data, [Results_folder filesep 'Reports' filesep 'GEARS_results_summary_html'], [], [Results_folder filesep 'Figures']);    
-
-        end       
-        
-    end
-    
+      
     
 %% Create figure report
 
@@ -1380,6 +1528,10 @@ Results.Simulation_handle = Simulate;
 
         warning(['Printing of uitables is not possible in linux so the ' char(New_order(1)) ' figure will be left out of the figure report.'])
 
+        Num_warnings = Num_warnings + 1;
+
+        Warning_log{Num_warnings} = ['Printing of uitables is not possible in linux so the ' char(New_order(1)) ' figure will be left out of the figure report.'];
+
         New_order = New_order(2:end); % Printing of uitables is not possible in linux.
        
         end 
@@ -1398,8 +1550,136 @@ Results.Simulation_handle = Simulate;
 
         end
                 
+    else 
+
+    New_order = {'dummy'}; % This is not actually used.
+
     end
+
+
+%% Check FIM for warning log
+    
+    if Calculate_parameter_confidence
+
+        if ~Run_standard_optimisation
+
+            if Cond_FIM_regularised > 10^5
+
+            Num_warnings = Num_warnings + 1;
+
+            Warning_log{Num_warnings} = ['The FIM for the regularised estimation is ill-conditioned (with condition number: '  sprintf('%e', Cond_FIM_regularised) '). It is highly likely that a lack of identifiability exists here. Metrics calculated using the FIM are probably artefacts.'];
+
+            end
+
+        else
+
+        Cond_FIM_regularised = 0; % This is not actually used.
+
+        end
+
+        if Cond_FIM_non_regularised > 10^5
+
+        Num_warnings = Num_warnings + 1;
+
+        Warning_log{Num_warnings} = ['The FIM for the non-regularised estimation is ill-conditioned (with condition number: '  sprintf('%e', Cond_FIM_non_regularised) '). It is highly likely that a lack of identifiability exists here. Metrics calculated using the FIM are probably artefacts.'];
+
+        end
+                    
+    else
+
+    Cond_FIM_regularised = 0; % This is not actually used.
+
+    Cond_FIM_non_regularised = 0; % This is not actually used.
+
+    end
+
    
+%% Warning log
+
+    if Run_standard_optimisation
+
+    Results_2nd_run.Num_local_searches_at_bounds = 0; % This is not actually used.
+
+    Results_2nd_run.Num_local_searches_performed = 0; % This is not actually used.
+
+    Num_failed_ints_reg = 0; % This is not actually used.
+
+    Num_int_reg = 0; % This is not actually used.
+
+    end
+
+    if Num_warnings ~= 0 
+
+    Warning_log = Warning_log(1:Num_warnings);
+
+    Potential_red_warnings = {'The parameter bounding has failed after 5 corrective steps, bounds will be set to the original values. Please try increasing the computational budget given to the solver.'; 
+    'The regularised parameter estimate has hit the reduced bounds, these bounds will be extended.'
+    'The regularised parameter estimate has a much higher cost than the non-regularised estimate, this is most likely a local solution. The reduced bounds will be extended to try and prevent this.'
+    ['The FIM for the regularised estimation is ill-conditioned (with condition number: '  sprintf('%e', Cond_FIM_regularised) '). It is highly likely that a lack of identifiability exists here. Metrics calculated using the FIM are probably artefacts.'];
+    ['The FIM for the non-regularised estimation is ill-conditioned (with condition number: '  sprintf('%e', Cond_FIM_non_regularised) '). It is highly likely that a lack of identifiability exists here. Metrics calculated using the FIM are probably artefacts.']};
+
+    Results.Warning_log.Red = Potential_red_warnings(ismember(Potential_red_warnings, Warning_log));
+
+    Potential_orange_warnings = {['Printing of uitables is not possible in linux so the ' char(New_order(1)) ' figure will be left out of the figure report.'];
+    '"Calculate_chi2_GEARS" requires the Matlab statistics toolbox. This will be skipped.';
+    'Convergence curves will not be plotted for multi-starts.';
+    'You have not provided any validation data. We highly recommended that you provide GEARS with validation data.'};
+
+    Results.Warning_log.Orange = Potential_orange_warnings(ismember(Potential_orange_warnings, Warning_log));
+
+    Potential_yellow_warnings = {'Plot_bounds_param_confidence_GEARS requires both Plot_bounds_param_confidence and Calculate_parameter_confidence to be true. This will be skipped.';
+    [num2str(Num_failed_ints_reg) ' of ' num2str(Num_int_reg) ' integrations failed in the regularised estimation.']
+    [num2str(Num_failed_ints_no_reg) ' of ' num2str(Num_int_no_reg) ' integrations failed in the non-regularised estimation.']
+    [num2str(Results_2nd_run.Num_local_searches_at_bounds) ' of ' num2str(Results_2nd_run.Num_local_searches_performed) ' local searches in the regularised estimation hit the bounds.']
+    [num2str(Results_initial_run.Num_local_searches_at_bounds) ' of ' num2str(Results_initial_run.Num_local_searches_performed) ' local searches in the non-regularised estimation hit the bounds.']};
+
+    Results.Warning_log.Yellow = Potential_yellow_warnings(ismember(Potential_yellow_warnings, Warning_log));
+
+        if isempty(Results.Warning_log.Red)
+
+        Results.Warning_log.Red = []; % Cleans it up a bit.
+
+        end
+
+        if isempty(Results.Warning_log.Orange)
+
+        Results.Warning_log.Orange = []; % Cleans it up a bit.
+
+        end
+
+        if isempty(Results.Warning_log.Yellow)
+
+        Results.Warning_log.Yellow = []; % Cleans it up a bit.
+
+        end
+
+    else
+
+    Results.Warning_log.Red = [];
+
+    Results.Warning_log.Orange = [];
+
+    Results.Warning_log.Yellow = [];
+
+    end
+
+
+%% Export to html 
+
+    if Export_results_to_html
+
+        if Val
+
+        Write_GEARS_results_html_summary(Results, Processed_fitting_data, [Results_folder filesep 'Reports' filesep 'GEARS_results_summary_html'], Processed_validation_data, [Results_folder filesep 'Figures']);    
+
+        else
+
+        Write_GEARS_results_html_summary(Results, Processed_fitting_data, [Results_folder filesep 'Reports' filesep 'GEARS_results_summary_html'], [], [Results_folder filesep 'Figures']);    
+
+        end       
+        
+    end
+
 
 %% Delete files created by eSS
 % We remove the files created by eSS as they are always recreated in MEIGO anyway.
@@ -1481,7 +1761,7 @@ Line_spaces(1)
 
         if Cond > 10^5
 
-        Cond_num_message = '. It is highly likely that a lack of identifiability exists here. Metrics calulated using the FIM are probably artefacts.';
+        Cond_num_message = '. It is highly likely that a lack of identifiability exists here. Metrics calculated using the FIM are probably artefacts.';
 
         else
 
@@ -1505,6 +1785,14 @@ Line_spaces(1)
 Line_spaces(2)
 
 disp(['GEARS analysis completed in ' num2str(Total_time_taken) ' seconds'])
+
+    if Num_warnings ~= 0
+
+    Line_spaces(1)
+
+    warning([num2str(Num_warnings) ' warning(s) were found, please consult the html warning log or Results.Warning_log.'])
+
+    end
 
 Line_spaces(1)
 
@@ -1541,6 +1829,23 @@ Line_spaces(3)
     end
 
 rmpath(genpath([Results_folder filesep 'AMICI_files'])) % The AMICI files created are then added to the path.
+
+
+%% If created, open the html report to the main solution
+
+    if Export_results_to_html
+
+        if Run_standard_optimisation
+
+        web([Results_folder filesep 'Reports' filesep 'GEARS_results_summary_html' filesep 'Non-regularised solution.html'])
+
+        else
+
+        web([Results_folder filesep 'Reports' filesep 'GEARS_results_summary_html' filesep 'Regularised solution.html'])
+        
+        end
+
+    end
 
 end
 
