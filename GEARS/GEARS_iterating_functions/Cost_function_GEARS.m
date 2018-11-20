@@ -18,13 +18,14 @@
 % File author: Jake Alan Pitt (jp00191.su@gmail.com)
 
 
-function [Cost, g, Residual, Sampling_output] = Cost_function_GEARS(Param_values, Data, Simulate, Int_opts, Sample)
+function [Cost, g, Residual, Sampling_output, Int_status_output] = Cost_function_GEARS(Param_values, Data, Simulate, Int_opts, Sample, Save_status)
 % The cost function used for the initial parameter estimation in GEARS. This function will be iterated over.
 % Param_values       - The parameter vector in log scale. (vector)
 % Data               - The set of data for which the cost will be calculated. Must be in the format created in "Initialise_GEARS_data" (structure)
 % Simulate           - The simulation handle of the model. Should be in the format created in "Generate_simulation_handle_GEARS". (anonymous function)
 % Int_opts           - The intergration options for AMICI (structure) Optional
 % Sample             - A flag indicating if the cost function should use the sampling section. (logical)
+% Save_status        - A flag indicating whether the save status should be kept. (logical) 
 
 
 %% Format parameter vector
@@ -91,6 +92,34 @@ g = 0; % We do not handle problems with constraints
 
     Sampling_output = []; % To define the output if no sampling is performed
     
+    end
+
+%% Save intergration status
+
+    if Save_status
+
+    persistent Int_status Num_int
+
+        if isempty(Int_status)
+
+        Num_int = 0;
+
+        Int_status = inf*ones(10^5, 1);
+        
+        end
+
+    Num_int = Num_int + 1;
+
+    Int_status(Num_int) = Simulation.status;
+
+    Int_status_output.Int_status = Int_status;
+
+    Int_status_output.Num_int = Num_int;
+
+    else
+
+    Int_status_output = [];
+
     end
    
 end

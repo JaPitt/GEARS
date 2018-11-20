@@ -18,7 +18,7 @@
 % File author: Jake Alan Pitt (jp00191.su@gmail.com)
 
 
-function [Cost, g, Residual] = Cost_function_regularised_GEARS(Param_values, Data, Simulate, Int_opts, alpha, P_ref)
+function [Cost, g, Residual, Int_status_output] = Cost_function_regularised_GEARS(Param_values, Data, Simulate, Int_opts, alpha, P_ref, W, Save_status)
 % The cost function used for the regularised parameter estimation in GEARS. This function will be iterated over.
 % Param_values - The parameter vector in log scale. (vector)
 % Data         - The set of data for which the cost will be calculated. Must be in the format created in "Initialise_GEARS_data" (structure)
@@ -26,6 +26,8 @@ function [Cost, g, Residual] = Cost_function_regularised_GEARS(Param_values, Dat
 % Int_opts     - The intergration options for AMICI (structure) Optional
 % alpha        - A regularisation parameter (scaler)
 % P_ref        - A regularisation parameter. This should not be in log scale. (vector) 
+% W            - The wieghting term for the regularisation. (matrix)
+% Save_status        - A flag indicating whether the save status should be kept. (logical) 
 
 
 %% Format parameter vector
@@ -52,14 +54,44 @@ Residual = [];
     Residual = [Residual; Data.(Exp_names{i}).Scaling_vector.*Data.(Exp_names{i}).Residual_function(Simulation, Data.(Exp_names{i}), Param_values)]; % Calculate the residuals for this experiment.
 
     end
+
       
 %% Organise outputs
 
-Residual = [Residual; sqrt(alpha)*diag(1./(P_ref))*(Param_values - P_ref)]; % Add the regularisation term
+Residual = [Residual; sqrt(alpha)*W*(Param_values - P_ref)]; % Add the regularisation term
     
 Cost = Residual'*Residual;
 
 g = 0; % We do not handle problems with constraints
+
+
+%% Save intergration status
+
+    if Save_status
+
+    persistent Int_status Num_int
+
+        if isempty(Int_status)
+
+        Num_int = 0;
+
+        Int_status = inf*ones(10^5, 1);
+        
+        end
+
+    Num_int = Num_int + 1;
+
+    Int_status(Num_int) = Simulation.status;
+
+    Int_status_output.Int_status = Int_status;
+
+    Int_status_output.Num_int = Num_int;
+
+    else
+
+    Int_status_output = [];
+
+    end
 
 end
 

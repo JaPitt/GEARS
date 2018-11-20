@@ -18,7 +18,7 @@
 % File author: Jake Alan Pitt (jp00191.su@gmail.com)
 
 
-function [Jobj, Jg, Jres] = Jacobian_of_residuals_regularised_GEARS(Param_values, Data, Simulate, Int_opts, alpha, P_ref)
+function [Jobj, Jg, Jres] = Jacobian_of_residuals_regularised_GEARS(Param_values, Data, Simulate, Int_opts, alpha, P_ref, ~, ~)
 % The jacobian function used for the regularised parameter estimation in GEARS. This function will be iterated over.
 % Param_values - The parameter vector in log scale. This must be in log scale. (vector)
 % Data         - The set of data for which the cost will be calculated. Must be in the format created in "Initialise_GEARS_data" (structure)
