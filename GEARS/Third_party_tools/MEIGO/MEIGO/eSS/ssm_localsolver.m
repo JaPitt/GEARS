@@ -1,5 +1,5 @@
 % $Header: svn://172.19.32.13/trunk/AMIGO2R2016/Kernel/OPT_solvers/eSS/ssm_localsolver.m 2031 2015-08-24 11:49:26Z attila $
-function [x,fval,exitflag,numeval]=ssm_localsolver(X0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,fjac,...
+function [x,fval,exitflag,numeval,Local_solver_hit_bounds]=ssm_localsolver(X0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,fjac,...
     local_solver,local_iterprint,local_tol,weight,nconst,tolc,local_opts, log_level, log_var, varargin)
 global ccll ccuu n_upper n_lower n_fun_eval
 
@@ -754,6 +754,19 @@ end
 % make sure x is a row vector.
 x = x(:).';
 
+    %%% Jake Flag for if the local solver hits the bounds % Start
+    if sum(x > x_U - x_U*0.0001) + sum(x < x_L + x_L*0.0001) ~= 0 % If have the solver hit the bounds. The 0.0001 is a tol of 0.01% to allow for small deviations.
+
+    Local_solver_hit_bounds = 1;
+
+    else
+
+    Local_solver_hit_bounds = 0;
+
+    end
+    %%% Jake Flag for if the local solver hits the bounds % End
+
+
     %%% Jake Convert back to log scale. % Start
     if log_level == 2 
         
@@ -761,6 +774,7 @@ x = x(:).';
 
     end
     %%% Jake Convert back to log scale. % End
+
 
 %\-----------------------------------------------------/
 % Definition of constraints for constrnew

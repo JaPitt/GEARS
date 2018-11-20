@@ -56,10 +56,12 @@ end
 %%% AFV 19/04/17: try-catch to avoid crashes due to errors in local search:
 % try
     if isFjacDefined
-            [x,fval,exitflag,numeval]=ssm_localsolver(x0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,fjac,...
+    Num_local_searches = Num_local_searches + 1; % Counter (Jake)
+            [x,fval,exitflag,numeval,Local_solver_hit_bounds(Num_local_searches)]=ssm_localsolver(x0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,fjac,...
                 local_solver,local_iterprint,local_tol,weight,nconst,tolc,opts.local,log_level, log_var,varargin{:});
         else
-            [x,fval,exitflag,numeval]=ssm_localsolver(x0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,[],...
+    Num_local_searches = Num_local_searches + 1; % Counter (Jake)
+            [x,fval,exitflag,numeval,Local_solver_hit_bounds(Num_local_searches)]=ssm_localsolver(x0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,[],...
                 local_solver,local_iterprint,local_tol,weight,nconst,tolc,opts.local,varargin{:});
     end
 % catch

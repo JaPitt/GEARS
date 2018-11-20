@@ -302,6 +302,10 @@ if isfield(problem,'fjac') && ~isempty(problem.fjac)
 	end
 end
 
+Num_local_searches = 0; % Start a counter for the local search. This is for the local solver hit bounds flag. (Jake)
+
+Local_solver_hit_bounds = inf*ones(10^5, 1); % Initialise the flags as a large inf vector. This will be resized by the counter. (Jake)
+
 log_var=opts.log_var;
 
 %Extra input parameters for fsqp, n2fb and nomad
@@ -1156,10 +1160,16 @@ while (not(fin))
                 tic
             end
             if isFjacDefined
-                [x,fval,exitflag,numeval]=ssm_localsolver(x0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,fjac,...
+
+                Num_local_searches = Num_local_searches + 1; % Counter (Jake)
+
+                [x,fval,exitflag,numeval, Local_solver_hit_bounds(Num_local_searches)]=ssm_localsolver(x0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,fjac,...
                     local_finish,local_iterprint,local_tol,weight,nconst,tolc,opts.local,log_level,log_var,varargin{:});
             else
-                [x,fval,exitflag,numeval]=ssm_localsolver(x0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,[],...
+
+                Num_local_searches = Num_local_searches + 1; % Counter (Jake)
+
+                [x,fval,exitflag,numeval,Local_solver_hit_bounds(Num_local_searches)]=ssm_localsolver(x0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,[],...
                     local_finish,local_iterprint,local_tol,weight,nconst,tolc,opts.local,log_level,log_var,varargin{:});
             end
             %      [x,fval,exitflag,numeval]=ssm_localsolver(x0,x_L,x_U,c_L,c_U,neq,ndata,int_var,bin_var,fobj,...
@@ -1246,6 +1256,13 @@ while (not(fin))
         end        
         %%% Jake Fixes double display of results and displays all results in linear scale % End
         
+%% Jake Local solver hit bounds flag 2018
+
+Local_solver_hit_bounds = Local_solver_hit_bounds(1:Num_local_searches); % Resize the vector of flags.
+
+Num_local_searches_at_bounds = sum(Local_solver_hit_bounds == 1);
+
+
 %% Correction Nov2016 % Jake 2018 see above
            %if iterprint==1
 %                 if isinf(fbest)
@@ -1273,6 +1290,9 @@ while (not(fin))
         Results.Refset.fpen=Refset_values_penalty;
         Results.Refset.const=Refset_nlc;
         Results.Refset.penalty=penalty;
+        Results.Num_local_searches_performed = Num_local_searches; % Jake additional results field.
+        Results.Num_local_searches_at_bounds = Num_local_searches_at_bounds; % Jake additional results field.
+    
         if plot_results==1 | plot_results==2
             stairs(Results.time,Results.f)
             xlabel('CPU Time (s)');
