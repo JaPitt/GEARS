@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {margin:0;}
+ul.head {list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: black;
+position: -webkit-sticky; /* Safari */
+position: sticky;
+top: 0;
+top: 0;
+width: 100%;
+margin-bottom:2px
+text-decoration: none}
+li.head {	border-right: 1px solid white;
+float: left;
+display: block;
+color: #EBF1DE;
+text-align: center;
+padding: 10px 10px;}
+.active {
+background-color: #4CAF50;}
+li.active {
+border-right: 1px solid white;
+float: left;
+display: block;
+color: black;
+text-align: center;
+padding: 10px 10px;
+background-color: #EBF1DE;}
+li.head a:hover {background-color: #0099ff;
+color = black;}
+li.active a:hover {background-color: #0099ff;
+color = black;}
+li.head a:visited{color:#EBF1DE}
+li.head a:link{color:#EBF1DE}
+li.active a:link{color:black}
+li.active a:visited{color:black;
+background-color: #EBF1DE;}
+h1.head {display: block;
+font-size: 2em;
+margin-top: 0em;
+margin-bottom: 0em;
+margin-left: 0;
+margin-right: 0;
+font-weight: bold;
+vertical-align:middle;
+line-height: 4;
+padding:5px}
+</style>
+</head>
+<body>
+<font size="4">
+<h1 class="head"> <span> Warning log for GEARS run: EO 16-Nov-2018 15:41:34 </span> </center> <img src="./Figures/GEARS_logo.svg" alt="GEARS_logo" height="150" width="175" align="right"></h1> 
+<font size="4">
+<ul class="head">
+<li class="head"><A style="text-decoration: none" href="Regularised solution.html">Regularised solution</A></li>
+<li class="head"><A style="text-decoration: none" href="Statistics for the regularised solution.html">Statistics for the regularised solution</A></li>
+<li class="head"><A style="text-decoration: none" href="Non-regularised solution.html">Non-regularised solution</A></li>
+<li class="head"><A style="text-decoration: none" href="Statistics for the non-regularised solution.html">Statistics for the non-regularised solution</A></li>
+<li class="head"><A style="text-decoration: none" href="Parameter bounding.html">Parameter bounding</A></li>
+<li class="head"><A style="text-decoration: none" href="Sampling.html">Sampling</A></li>
+<li class="active"><A style="text-decoration: none" href="Warning log.html">Warning log</A></li>
+<li class="head"><A style="text-decoration: none" href="Settings used.html">Settings used</A></li>
+</ul>
+</font>
+<p></p>
+<p style = "padding: 5px"> GEARS warnings are classified as follows:
+<ul>
+<li> Red warnings - Warnings that denote problems users should pay direct attention to and may affect the main results of the procedure
+<li> Orange warnings - Warnings that denote issues directly affecting some noncrucial parts of the procedure
+<li> Yellow warnings - Warnings that should be noted but in general should not directly alter the GEARS process.
+</ul>
+</p>
+<p>
+<div style="background-color: #ff6666; margin-left: 0px; margin-right: 0px; padding-bottom: 8px; padding-left: 25px; padding-right: 10px; padding-top: 10px;">
+<h2>Red warnings</h2>
+<li>The regularised parameter estimate has a much higher cost than the non-regularised estimate, this is most likely a local solution. The reduced bounds will be extended to try and prevent this.
+<li>The FIM for the regularised estimation is ill-conditioned (with condition number: 4.029679e+06). It is highly likely that a lack of identifiability exists here. Metrics calculated using the FIM are probably artefacts.
+<li>The FIM for the non-regularised estimation is ill-conditioned (with condition number: 1.468911e+10). It is highly likely that a lack of identifiability exists here. Metrics calculated using the FIM are probably artefacts.
+</ol>
+</div>
+</p>
+<p>
+<div style="background-color: #ffbf80; margin-left: 0px; margin-right: 0px; padding-bottom: 10px; padding-left: 25px; padding-right: 10px; padding-top: 10px;">
+<h2>Orange warnings</h2>
+<li>"Calculate_chi2_GEARS" requires the Matlab statistics toolbox. This will be skipped.
+</ol>
+</div>
+</p>
+<p>
+<div style="background-color: #ffff99;; margin-left: 0px; margin-right: 0px; padding-bottom: 10px; padding-left: 25px; padding-right: 10px; padding-top: 10px;">
+<h2>Yellow warnings</h2>
+<li>5 of 25076 integrations failed in the regularised estimation.
+<li>8 of 26 local searches in the non-regularised estimation hit the bounds.
+</ol>
+</div>
+</p>
+</html>
+</font>
+</body>
