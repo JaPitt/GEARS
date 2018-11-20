@@ -31,7 +31,7 @@ Int_opts.maxsteps = 1E5; % Maximum number of integration steps. (scaler)
 
 %%% Convergance options (At least one is required, when more than one is provided MEIGO will stop once one of said criteria is met)
 
-MEIGO_options.maxeval = 25000; % Maximum number of function evaluations. (scaler)
+MEIGO_options.maxeval = 50000; % Maximum number of function evaluations. (scaler)
 
 % problem.vtr = []; % The cost value of the optima. If the cost is known this can be used. (scaler) [Optional]
 
