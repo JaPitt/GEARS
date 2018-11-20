@@ -71,7 +71,9 @@ NRMSE_experiment_wise = zeros(length(Exp_names), 1);
     
     Residual_this_exp = Data.(char(Exp_names(i))).Residual_function(Simulation, Data.(char(Exp_names(i))), Param_values)./Norm;
     
-    NRMSE_experiment_wise(i) = sqrt(sum(Residual_this_exp.^2)/numel(Residual_this_exp));
+    Residual_this_exp = Residual_this_exp.*Data.(char(Exp_names(i))).Standard_deviation(Data.(char(Exp_names(i))).Finite_data);
+
+    NRMSE_experiment_wise(i) = sqrt(sum(Residual_this_exp.^2)/numel(Residual_this_exp)); % Do not use the standard deviation in the NRMSE.
     
     Residual = [Residual; Residual_this_exp];
 

@@ -90,7 +90,7 @@ Scaling_tester = [];
 
     if ~isequal(Scaling_tester, ones(size(Scaling_tester)))
 
-    [Cost, ~, Residual] = Cost_function_GEARS(Param_values, Data, Simulate, Int_opts, 0);
+    [Cost, ~, Residual] = Cost_function_GEARS(Param_values, Data, Simulate, Int_opts, 0, 0);
 
     Scaling = Cost/(length(Residual) - 1);
 

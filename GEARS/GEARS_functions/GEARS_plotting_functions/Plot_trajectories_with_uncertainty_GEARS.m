@@ -114,7 +114,7 @@ Counter1 = 0;
 
     r_cond_FIM = rcond(red_FIM);
 
-    [Cost, ~, Residual] = Cost_function_GEARS(Param_values, Data, Simulate, Int_opts, 0);
+    [Cost, ~, Residual] = Cost_function_GEARS(Param_values, Data, Simulate, Int_opts, 0, 0);
 
     var_cov_matrix(~zero_cols, ~zero_cols) = Cost*(eye(length(red_FIM))/red_FIM)/length(Residual);
 
